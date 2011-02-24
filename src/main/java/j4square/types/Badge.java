@@ -1,13 +1,13 @@
-package com.williamvanderhoef.foursquare.types;
+package j4square.types;
 
 import java.util.List;
 import java.util.Map;
 
 /**
  * As defined on
- * <a href="http://developer.foursquare.com/docs/responses/badge.html">Foursquare Developers</a>
+ * <a href="http://developer.j4square.com/docs/responses/badge.html">Foursquare Developers</a>
  * 
- * @see http://developer.foursquare.com/docs/responses/badge.html
+ * @see http://developer.j4square.com/docs/responses/badge.html
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
@@ -68,7 +68,7 @@ public class Badge extends Unique
 
 	/**
 	 * Pieces needed to construct badge image at various sizes. 
-	 * Combine prefix with one of the sizes and a name, e.g. http://foursquare.com/img/badge/57/newbie.png. 
+	 * Combine prefix with one of the sizes and a name, e.g. http://j4square.com/img/badge/57/newbie.png. 
 	 * For locked badges, this will point to the locked badge image.
 	 * 
 	 * @return the image

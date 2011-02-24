@@ -1,7 +1,7 @@
-package com.williamvanderhoef.foursquare.types;
+package j4square.types;
 
 /**
- * As documented on <a href="http://developer.foursquare.com/docs/responses/todo.html">Foursquare Developers - Todo Response</a>
+ * As documented on <a href="http://developer.j4square.com/docs/responses/todo.html">Foursquare Developers - Todo Response</a>
  * 
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *

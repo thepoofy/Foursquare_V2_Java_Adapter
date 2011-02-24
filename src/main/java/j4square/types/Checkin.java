@@ -1,8 +1,8 @@
-package com.williamvanderhoef.foursquare.types;
+package j4square.types;
 
 /**
  * 
- * As defined on <a href="http://developer.foursquare.com/docs/responses/checkin.html">Foursquare Developers - Checkin Response</a>
+ * As defined on <a href="http://developer.j4square.com/docs/responses/checkin.html">Foursquare Developers - Checkin Response</a>
  * 
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *

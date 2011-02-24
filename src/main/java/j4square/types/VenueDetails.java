@@ -1,9 +1,9 @@
-package com.williamvanderhoef.foursquare.types;
+package j4square.types;
 
 import java.util.List;
 
 /**
- * As defined on <a href="http://developer.foursquare.com/docs/responses/venue.html">Foursquare Developers - Venue</a>
+ * As defined on <a href="http://developer.j4square.com/docs/responses/venue.html">Foursquare Developers - Venue</a>
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */

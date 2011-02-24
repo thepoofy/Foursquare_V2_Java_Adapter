@@ -1,9 +1,9 @@
-package com.williamvanderhoef.foursquare.responses;
+package j4square.responses;
 
 import java.util.List;
 
-import com.williamvanderhoef.foursquare.types.Group;
-import com.williamvanderhoef.foursquare.types.Venue;
+import j4square.types.Group;
+import j4square.types.Venue;
 
 
 public class VenueSearchResponse

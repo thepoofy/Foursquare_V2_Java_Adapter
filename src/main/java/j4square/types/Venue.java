@@ -1,11 +1,11 @@
-package com.williamvanderhoef.foursquare.types;
+package j4square.types;
 
 import java.util.List;
 
 
 /**
  * 
- * @see http://developer.foursquare.com/docs/responses/venue.html
+ * @see http://developer.j4square.com/docs/responses/venue.html
  * @author William Vanderhoef william.vanderhoef@gmail.com
  *
  */
@@ -38,7 +38,7 @@ public class Venue extends Unique
 	 * All categories will have a string id, icon URL, and parents (an array of parent category names in increasing specificity). 
 	 * For the complete set of categories, See Category. TODO broken link
 	 * 
-	 * @see com.williamvanderhoef.foursquare.types.Category
+	 * @see j4square.types.Category
 	 */
 	private List<Category> categories;
 	

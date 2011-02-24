@@ -1,4 +1,4 @@
-package com.williamvanderhoef.foursquare.types;
+package j4square.types;
 
 public class Mayor extends Count
 {

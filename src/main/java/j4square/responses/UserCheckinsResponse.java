@@ -1,6 +1,6 @@
-package com.williamvanderhoef.foursquare.responses;
+package j4square.responses;
 
-import com.williamvanderhoef.foursquare.types.Checkins;
+import j4square.types.Checkins;
 
 public class UserCheckinsResponse
 {

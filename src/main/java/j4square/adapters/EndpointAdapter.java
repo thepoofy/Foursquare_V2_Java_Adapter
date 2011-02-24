@@ -1,6 +1,6 @@
-package com.williamvanderhoef.foursquare.adapters;
+package j4square.adapters;
 
-import com.williamvanderhoef.foursquare.types.Results;
+import j4square.types.Results;
 
 public interface EndpointAdapter<T>
 {

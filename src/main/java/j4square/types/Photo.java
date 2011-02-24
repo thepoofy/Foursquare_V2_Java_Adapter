@@ -1,7 +1,7 @@
-package com.williamvanderhoef.foursquare.types;
+package j4square.types;
 
 /**
- * @see http://developer.foursquare.com/docs/responses/photo.html
+ * @see http://developer.j4square.com/docs/responses/photo.html
  * @author William Vanderhoef william.vanderhoef@gmail.com
  * 
  */

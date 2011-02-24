@@ -1,18 +1,18 @@
-package com.williamvanderhoef.foursquare.adapters.users;
+package j4square.adapters.users;
 
 import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
-import com.williamvanderhoef.foursquare.responses.UserResponse;
-import com.williamvanderhoef.foursquare.types.Results;
+import j4square.adapters.EndpointAdapter;
+import j4square.responses.UserResponse;
+import j4square.types.Results;
 
 public class UsersEndpoint implements EndpointAdapter<UserResponse>
 {
 	/*
 	 * (non-Javadoc)
-	 * @see com.williamvanderhoef.foursquare.adapters.EndpointAdapter#adapt(java.lang.String)
+	 * @see j4square.adapters.EndpointAdapter#adapt(java.lang.String)
 	 */
 	@Override
 	public Results<UserResponse> adapt(String responseText)

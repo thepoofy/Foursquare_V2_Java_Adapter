@@ -1,6 +1,6 @@
-package com.williamvanderhoef.foursquare.responses;
+package j4square.responses;
 
-import com.williamvanderhoef.foursquare.types.UserDetail;
+import j4square.types.UserDetail;
 
 public class UserResponse
 {

@@ -1,4 +1,4 @@
-package com.williamvanderhoef.foursquare.types;
+package j4square.types;
 
 import java.util.List;
 

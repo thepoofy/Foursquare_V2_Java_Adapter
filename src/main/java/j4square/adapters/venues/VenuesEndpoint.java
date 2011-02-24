@@ -1,13 +1,13 @@
-package com.williamvanderhoef.foursquare.adapters.venues;
+package j4square.adapters.venues;
 
 import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
-import com.williamvanderhoef.foursquare.responses.VenueResponse;
-import com.williamvanderhoef.foursquare.types.Results;
-import com.williamvanderhoef.foursquare.types.VenueDetails;
+import j4square.adapters.EndpointAdapter;
+import j4square.responses.VenueResponse;
+import j4square.types.Results;
+import j4square.types.VenueDetails;
 
 public class VenuesEndpoint implements EndpointAdapter<VenueDetails>
 {
