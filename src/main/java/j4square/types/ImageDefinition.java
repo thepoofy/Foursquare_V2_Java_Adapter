@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 
  * Pieces needed to construct badge image at various sizes. 
- * Combine prefix with one of the sizes and a name, e.g. http://j4square.com/img/badge/57/newbie.png. 
+ * Combine prefix with one of the sizes and a name, e.g. http://foursquare.com/img/badge/57/newbie.png. 
  * For locked badges, this will point to the locked badge image.
  * 
  * 
