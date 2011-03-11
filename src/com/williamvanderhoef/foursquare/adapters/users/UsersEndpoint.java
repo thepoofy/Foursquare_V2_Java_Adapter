@@ -22,8 +22,5 @@ public class UsersEndpoint implements EndpointAdapter<UserResponse>
 		Type userDetailResultsType = new TypeToken<Results<UserResponse>>() {}.getType();
 		
 		return g.fromJson(responseText, userDetailResultsType);
-	}
-
-	
-	
+	}	
 }

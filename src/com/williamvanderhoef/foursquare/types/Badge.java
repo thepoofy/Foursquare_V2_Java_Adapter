@@ -11,7 +11,7 @@ import java.util.Map;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class Badge extends Unique
+public class Badge extends Unique implements Notification
 {
 	private String badgeId;
 	private String name;
@@ -113,5 +113,11 @@ public class Badge extends Unique
 	public void setBadgeId(String badgeId)
 	{
 		this.badgeId = badgeId;
+	}
+
+	@Override
+	public NotificationType getType()
+	{
+		return NotificationType.badge;
 	}
 }

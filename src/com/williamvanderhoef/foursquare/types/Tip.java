@@ -6,7 +6,7 @@ package com.williamvanderhoef.foursquare.types;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class Tip extends Unique
+public class Tip extends Unique implements Notification
 {
 	private String text;
 	private Long createdAt;
@@ -114,6 +114,12 @@ public class Tip extends Unique
 	public void setVenue(Venue venue)
 	{
 		this.venue = venue;
+	}
+
+	@Override
+	public NotificationType getType()
+	{
+		return NotificationType.tip;
 	}
 	
 

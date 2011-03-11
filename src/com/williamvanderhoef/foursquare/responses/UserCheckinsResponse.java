@@ -1,17 +1,20 @@
 package com.williamvanderhoef.foursquare.responses;
 
-import com.williamvanderhoef.foursquare.types.Checkins;
+import com.williamvanderhoef.foursquare.types.Checkin;
+import com.williamvanderhoef.foursquare.types.Items;
 
 public class UserCheckinsResponse
 {
-	private Checkins checkins;
-
-	public Checkins getCheckins()
+	//checkins contains a list of Checkin and a count
+	private Items<Checkin> checkins;
+	
+	
+	public Items<Checkin> getCheckins()
 	{
 		return checkins;
 	}
 
-	public void setCheckins(Checkins checkins)
+	public void setCheckins(Items<Checkin> checkins)
 	{
 		this.checkins = checkins;
 	}
