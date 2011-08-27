@@ -11,6 +11,25 @@ public class Results<ResponseType>
 	private Meta meta;
 	private ResponseType response;
 	
+	//optional - always returned with Checkins Add
+	//private Notifications notifications;
+
+//	/**
+//	 * @return the notifications
+//	 */
+//	public Notifications getNotifications()
+//	{
+//		return notifications;
+//	}
+//
+//	/**
+//	 * @param notifications the notifications to set
+//	 */
+//	public void setNotifications(Notifications notifications)
+//	{
+//		this.notifications = notifications;
+//	}
+
 	
 	/**
 	 * @return the meta

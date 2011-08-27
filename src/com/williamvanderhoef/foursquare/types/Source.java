@@ -4,6 +4,15 @@ public class Source
 {
 	private String name;
 	private String url;
+	
+	public Source(){}
+
+	public Source(String name, String url)
+	{
+		this.name = name;
+		this.url = url;
+	}
+	
 	/**
 	 * @return the name
 	 */

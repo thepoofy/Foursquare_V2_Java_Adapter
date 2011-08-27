@@ -13,10 +13,23 @@ public class CheckinAddResponse
 {
 	/**
 	 *  /checkins/add Response will always contain a checkin with notifications block
-	 * 
-	 * TODO add a subclass of Checkin that will contain the anomalous notifications block
 	 */
 	private Checkin checkin;
 	
-	
+
+	/**
+	 * @return the checkin
+	 */
+	public Checkin getCheckin()
+	{
+		return checkin;
+	}
+
+	/**
+	 * @param checkin the checkin to set
+	 */
+	public void setCheckin(Checkin checkin)
+	{
+		this.checkin = checkin;
+	}
 }

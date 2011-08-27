@@ -123,7 +123,7 @@ public class Checkin extends Unique
 		this.shout = shout;
 	}
 	/**
-	 * Seconds since epoch when this checkin was created.
+	 * SECONDS since epoch when this checkin was created.
 	 * @return the createdAt
 	 */
 	public Long getCreatedAt()
@@ -195,4 +195,7 @@ public class Checkin extends Unique
 	{
 		this.isPrivate = isPrivate;
 	}
+	
+	
+	
 }

@@ -2,7 +2,6 @@ package com.williamvanderhoef.foursquare.adapters.checkins;
 
 import java.lang.reflect.Type;
 
-import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
 import com.williamvanderhoef.foursquare.responses.CheckinAddResponse;
@@ -15,14 +14,12 @@ import com.williamvanderhoef.foursquare.types.Results;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class CheckinsAddEndpoint implements EndpointAdapter<CheckinAddResponse>
+public class CheckinsAddEndpoint extends EndpointAdapter<CheckinAddResponse>
 {
 
-	@Override
-	public Results<CheckinAddResponse> adapt(String responseText)
+	public Type defineType()
 	{
-		Type checkinAddResultsType = new TypeToken<Results<CheckinAddResponse>>() {}.getType();
-
-		return new Gson().fromJson(responseText,checkinAddResultsType );
+		return new TypeToken<Results<CheckinAddResponse>>() {}.getType();
 	}
+
 }

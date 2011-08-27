@@ -4,14 +4,13 @@ import com.williamvanderhoef.foursquare.types.Items;
 import com.williamvanderhoef.foursquare.types.VenueHistory;
 
 /**
- * Example found at https://developer.foursquare.com/docs/explore.html#req=users/self/venuehistory
+ * Example found at http://developer.foursquare.com/docs/explore.html#req=venues/trending%3Fll%3D40.7,-74
  * 
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class VenueTrendingResponse
+public class UsersVenueHistoryResponse
 {
-	
 	private Items<VenueHistory> venues;
 
 	public Items<VenueHistory> getVenues()
@@ -23,8 +22,6 @@ public class VenueTrendingResponse
 	{
 		this.venues = venues;
 	}
-
-	
 
 	
 }

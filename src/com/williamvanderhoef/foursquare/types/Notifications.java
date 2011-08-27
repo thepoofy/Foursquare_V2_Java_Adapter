@@ -15,4 +15,34 @@ public class Notifications
 	private Notification item;
 	private NotificationType type;
 	
+	
+	/**
+	 * @return the item
+	 */
+	public Notification getItem()
+	{
+		return item;
+	}
+	/**
+	 * @param item the item to set
+	 */
+	public void setItem(Notification item)
+	{
+		this.item = item;
+	}
+	/**
+	 * @return the type
+	 */
+	public NotificationType getType()
+	{
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(NotificationType type)
+	{
+		this.type = type;
+	}
+	
 }
