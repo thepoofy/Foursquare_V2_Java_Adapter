@@ -69,6 +69,26 @@ public class VenueDetails extends Venue
 	 */
 	private Groups<Photo> photos;
 
+	
+	
+	
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Long getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Long createdAt) {
+		this.createdAt = createdAt;
+	}
+
 	/**
 	 * @return the stats
 	 */
