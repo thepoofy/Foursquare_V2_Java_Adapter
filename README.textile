@@ -1,4 +1,4 @@
-h1. Header
+h1. THE README
 
 This is a project designed to simplify the way java developers interact with the Foursquare V2 API.
 
@@ -8,6 +8,8 @@ Many Java platforms have their own API for making http requests.  In my case it 
 
 Any questions, comments or requests to help: support@checkinassistant.com
 This project is being maintained specificically for "Check in Assistant":http://checkinasst.com, and "FourGui.de":http://fourgui.de
+
+*Examples will be posted to the github wiki soon!*
 
 Thanks,
 *Will Vanderhoef*
