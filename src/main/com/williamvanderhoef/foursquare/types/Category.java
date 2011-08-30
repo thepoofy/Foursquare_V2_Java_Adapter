@@ -14,11 +14,14 @@ public class Category
 	
 	private String name;
 	
+	private String pluralName;
+	
 	private String icon;	//url
 	
 	private List<String> parents;
 	
 	private Boolean primary;
+	
 	
 	
 	/**
@@ -49,6 +52,14 @@ public class Category
 	{
 		this.name = name;
 	}
+	
+	public String getPluralName() {
+		return pluralName;
+	}
+	public void setPluralName(String pluralName) {
+		this.pluralName = pluralName;
+	}
+	
 	/**
 	 * @return the icon
 	 */

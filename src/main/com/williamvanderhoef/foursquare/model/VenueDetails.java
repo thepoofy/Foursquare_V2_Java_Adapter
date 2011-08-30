@@ -5,7 +5,6 @@ import java.util.List;
 import com.williamvanderhoef.foursquare.types.Count;
 import com.williamvanderhoef.foursquare.types.Groups;
 import com.williamvanderhoef.foursquare.types.Photo;
-import com.williamvanderhoef.foursquare.types.Stats;
 
 /**
  * As defined on <a href="http://developer.foursquare.com/docs/responses/venue.html">Foursquare Developers - Venue</a>
@@ -19,10 +18,6 @@ public class VenueDetails extends Venue
 	 */
 	private String description;
 	
-	/**
-	 * Contains checkinsCount (total checkins ever here) and usersCount (total users who have ever checked in here). 
-	 */
-	private Stats stats;
 	
 	/**
 	 * Seconds since epoch when the venue was created. 
@@ -89,21 +84,7 @@ public class VenueDetails extends Venue
 		this.createdAt = createdAt;
 	}
 
-	/**
-	 * @return the stats
-	 */
-	public Stats getStats()
-	{
-		return stats;
-	}
 
-	/**
-	 * @param stats the stats to set
-	 */
-	public void setStats(Stats stats)
-	{
-		this.stats = stats;
-	}
 
 	/**
 	 * @return the mayor

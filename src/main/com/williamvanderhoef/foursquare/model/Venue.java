@@ -5,6 +5,7 @@ import java.util.List;
 import com.williamvanderhoef.foursquare.types.Category;
 import com.williamvanderhoef.foursquare.types.Groups;
 import com.williamvanderhoef.foursquare.types.LocationDetails;
+import com.williamvanderhoef.foursquare.types.Stats;
 import com.williamvanderhoef.foursquare.types.Unique;
 
 
@@ -59,6 +60,35 @@ public class Venue extends Unique
 	 * If viewing details and there is a logged-in user, there is also a groups field with friends and others as types. 
 	 */
 	private Groups<Checkin> hereNow;	
+	
+	
+	/**
+	 * Contains checkinsCount (total checkins ever here) and usersCount (total users who have ever checked in here). 
+	 */
+	private Stats stats;
+	
+	private String url;
+	
+	
+	
+	/**
+	 * XXX Undocumented
+	 */
+	private String itemId;	
+	
+	public String getItemId() {
+		return itemId;
+	}
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * @return the name
@@ -158,4 +188,26 @@ public class Venue extends Unique
 	{
 		this.hereNow = hereNow;
 	}
+	/**
+	 * @return the stats
+	 */
+	public Stats getStats()
+	{
+		return stats;
+	}
+	/**
+	 * @param stats the stats to set
+	 */
+	public void setStats(Stats stats)
+	{
+		this.stats = stats;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	
 }

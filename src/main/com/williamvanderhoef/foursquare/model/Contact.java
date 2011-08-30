@@ -6,6 +6,8 @@ public class Contact
 	private String facebook;
 	private String email;
 	private String phone;
+	private String formattedPhone;
+	
 	/**
 	 * @return the twitter
 	 */
@@ -62,4 +64,12 @@ public class Contact
 	{
 		this.phone = phone;
 	}
+	public String getFormattedPhone() {
+		return formattedPhone;
+	}
+	public void setFormattedPhone(String formattedPhone) {
+		this.formattedPhone = formattedPhone;
+	}
+	
+	
 }

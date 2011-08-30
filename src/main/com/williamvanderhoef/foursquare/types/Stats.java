@@ -4,6 +4,7 @@ public class Stats
 {
 	private Integer checkinsCount;
 	private Integer usersCount;
+	private Integer tipCount;
 	
 	
 	/**
@@ -33,6 +34,13 @@ public class Stats
 	public void setUsersCount(Integer usersCount)
 	{
 		this.usersCount = usersCount;
+	}
+	
+	public Integer getTipCount() {
+		return tipCount;
+	}
+	public void setTipCount(Integer tipCount) {
+		this.tipCount = tipCount;
 	}
 	
 	

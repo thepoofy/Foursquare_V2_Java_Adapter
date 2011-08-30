@@ -35,6 +35,7 @@ public class Checkin extends Unique
 	private Items<Photo> photos;
 	private Items<Object> comments;		//FIXME add Comment Object once it is defined by foursquare
 	
+	private Boolean isMayor;
 	
 	
 	/**
@@ -228,7 +229,14 @@ public class Checkin extends Unique
 	{
 		this._private = isPrivate;
 	}
+	public Boolean getIsMayor() {
+		return isMayor;
+	}
+	public void setIsMayor(Boolean isMayor) {
+		this.isMayor = isMayor;
+	}
 	
+
 	
 	
 }

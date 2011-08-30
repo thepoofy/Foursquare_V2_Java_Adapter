@@ -1,23 +1,32 @@
 package com.williamvanderhoef.foursquare.types;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+
 /**
  * 
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  * @param <ResponseType>
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Results<ResponseType>
 {
 	private Meta meta;
 	private ResponseType response;
 	
-	//optional - always returned with Checkins Add
-	//private Notifications notifications;
-
+	
+//	private transient Object notifications;
+//	
+//	
+//	
+//	//optional - always returned with Checkins Add
+//	//private Notifications notifications;
+//
 //	/**
 //	 * @return the notifications
 //	 */
-//	public Notifications getNotifications()
+//	public Object getNotifications()
 //	{
 //		return notifications;
 //	}
@@ -25,7 +34,7 @@ public class Results<ResponseType>
 //	/**
 //	 * @param notifications the notifications to set
 //	 */
-//	public void setNotifications(Notifications notifications)
+//	public void setNotifications(Object notifications)
 //	{
 //		this.notifications = notifications;
 //	}
