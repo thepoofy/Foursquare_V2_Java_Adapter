@@ -21,9 +21,9 @@ import com.williamvanderhoef.foursquare.BaseTest;
 import com.williamvanderhoef.foursquare.GsonResultsLoader;
 import com.williamvanderhoef.foursquare.JacksonResultsLoader;
 import com.williamvanderhoef.foursquare.ResultsLoader;
-import com.williamvanderhoef.foursquare.adapters.users.UserCheckinsEndpoint;
-import com.williamvanderhoef.foursquare.model.Checkin;
-import com.williamvanderhoef.foursquare.responses.UserCheckinsResponse;
+import com.williamvanderhoef.foursquare.adapters.users.UsersVenueHistoryEndpoint;
+import com.williamvanderhoef.foursquare.model.VenueHistory;
+import com.williamvanderhoef.foursquare.responses.UsersVenueHistoryResponse;
 import com.williamvanderhoef.foursquare.types.Items;
 import com.williamvanderhoef.foursquare.types.Results;
 
@@ -32,21 +32,21 @@ import com.williamvanderhoef.foursquare.types.Results;
  *
  */
 @RunWith(Parameterized.class)
-public class CheckinsTest extends BaseTest<UserCheckinsResponse> {
+public class VenueHistoryTest extends BaseTest<UsersVenueHistoryResponse> {
 
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.users.self.checkins.20110828.json";
+		return "src/test/v2.users.self.venuehistory.20110828.json";
 	}
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsLoader<UserCheckinsResponse>> params = new ArrayList<ResultsLoader<UserCheckinsResponse>>();  
+		List<ResultsLoader<UsersVenueHistoryResponse>> params = new ArrayList<ResultsLoader<UsersVenueHistoryResponse>>();  
         
-		GsonResultsLoader<UserCheckinsResponse> gLoader = new GsonResultsLoader<UserCheckinsResponse>(new UserCheckinsEndpoint());
+		GsonResultsLoader<UsersVenueHistoryResponse> gLoader = new GsonResultsLoader<UsersVenueHistoryResponse>(new UsersVenueHistoryEndpoint());
 		params.add(gLoader);
-		JacksonResultsLoader<UserCheckinsResponse> jLoader = new JacksonResultsLoader<UserCheckinsResponse>(new UserCheckinsEndpoint());
+		JacksonResultsLoader<UsersVenueHistoryResponse> jLoader = new JacksonResultsLoader<UsersVenueHistoryResponse>(new UsersVenueHistoryEndpoint());
 		params.add(jLoader);
         
 		return Arrays.asList(new Object[][] {
@@ -55,12 +55,12 @@ public class CheckinsTest extends BaseTest<UserCheckinsResponse> {
 		});
 	}
 	
-	public CheckinsTest(ResultsLoader<UserCheckinsResponse> loader)
+	public VenueHistoryTest(ResultsLoader<UsersVenueHistoryResponse> loader)
 	{
 		this.loader = loader;
 	}
 	
-	private ResultsLoader<UserCheckinsResponse> loader = null;
+	private ResultsLoader<UsersVenueHistoryResponse> loader = null;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -74,27 +74,28 @@ public class CheckinsTest extends BaseTest<UserCheckinsResponse> {
 		this.setResults(loader.parse(this.getFileContents()));
 	}
 	
+		
 	@Test
 	public void testItems() {
 		
-		Results<UserCheckinsResponse> results = getResults();
+		Results<UsersVenueHistoryResponse> results = getResults();
 		
-		Items<Checkin> checkins = results.getResponse().getCheckins();
+		Items<VenueHistory> items = results.getResponse().getVenues();
 		
-		Assert.assertNotNull(checkins);
+		Assert.assertNotNull(items);
 	
-		Assert.assertNotNull(checkins.getCount());
+		Assert.assertNotNull(items.getCount());
 		
-		Assert.assertNotNull(checkins.getItems());
+		Assert.assertNotNull(items.getItems());
 	}
 
 	@Test
-	public void testCheckins() {
+	public void testValues() {
 //		fail("Not yet implemented");
 		
-		Items<Checkin> checkins = getResults().getResponse().getCheckins();
+		Items<VenueHistory> checkins = getResults().getResponse().getVenues();
 		
-		Checkin ck = checkins.getItems().get(0);
+		VenueHistory ck = checkins.getItems().get(0);
 		
 		Assert.assertNotNull(ck);
 	}
