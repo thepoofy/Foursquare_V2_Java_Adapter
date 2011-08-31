@@ -7,9 +7,11 @@ With this project a developer should be easily able to deserialize a response fr
 Many Java platforms have their own API for making http requests.  In my case it was the difference between Android and Google App Engine.  I choose to remove this component and let you maintain the finite control over the requests while this package deals with mapping the response data into Checkins, Users and everything else.
 
 Any questions, comments or requests to help: support@checkinassistant.com
-This project is being maintained specificically for "Check in Assistant":http://checkinasst.com, and "FourGui.de":http://fourgui.de
+This project is being maintained specificically for "Check in Assistant":http://checkinasst.com, and "FourGui.de":http://fourgui.de but I welcome any developers who wish to use this in their project.
 
 *Examples will be posted to the github wiki soon!*
+
+I am not very keen on which license to distribute this project with but expect GPL or MIT going forward.  Please keep the package structure intact if forking.
 
 Thanks,
 *Will Vanderhoef*
