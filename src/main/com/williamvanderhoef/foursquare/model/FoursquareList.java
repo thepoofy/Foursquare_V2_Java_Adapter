@@ -1,18 +1,19 @@
 package com.williamvanderhoef.foursquare.model;
 
 import com.williamvanderhoef.foursquare.types.Count;
+import com.williamvanderhoef.foursquare.types.Photo;
 import com.williamvanderhoef.foursquare.types.Unique;
 
 /**
  * @date("08/28/2011")
  * 
- * I really hate calling this object List but I want to keep 4sq's name conventions.
- * Currently a non-public api.  This file is definitely subject to change.
+ * The name was originally "List" but it took all of 3 minutes to realize how ambiguous that would be in downstream code.
+ * The name FoursquareList was chosen in the event
  * 
  * @author Willum
  *
  */
-public class List extends Unique{
+public class FoursquareList extends Unique{
 
 	private String name;
 	private String description;
@@ -24,6 +25,9 @@ public class List extends Unique{
 	private Count followers;
 	private Count listItems;
 	
+	private Photo photo;
+	private Long createdAt;
+	private Long updatedAt;
 	
 	
 	
@@ -80,6 +84,24 @@ public class List extends Unique{
 	}
 	public void setListItems(Count listItems) {
 		this.listItems = listItems;
+	}
+	public Photo getPhoto() {
+		return photo;
+	}
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
+	}
+	public Long getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(Long createdAt) {
+		this.createdAt = createdAt;
+	}
+	public Long getUpdatedAt() {
+		return updatedAt;
+	}
+	public void setUpdatedAt(Long updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	
