@@ -1,4 +1,4 @@
-package com.williamvanderhoef.foursquare;
+package com.williamvanderhoef.foursquare.parsers;
 
 import java.lang.reflect.Field;
 
@@ -9,7 +9,7 @@ import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
 import com.williamvanderhoef.foursquare.types.Results;
 
 
-public class GsonResultsLoader<T> implements ResultsLoader<T> {
+public class GsonResultsParser<T> implements ResultsParser<T> {
 
 	@SuppressWarnings({ "rawtypes" })
 	private EndpointAdapter adapter;
@@ -20,7 +20,7 @@ public class GsonResultsLoader<T> implements ResultsLoader<T> {
 	 * @param adapter
 	 */
 	@SuppressWarnings({ "rawtypes" })	//the EndpointAdapter type doesn't matter, it's getType() is defines the java.lang.reflect.Type
-	public GsonResultsLoader(EndpointAdapter adapter) {
+	public GsonResultsParser(EndpointAdapter adapter) {
 		
 		this.adapter = adapter;
 		

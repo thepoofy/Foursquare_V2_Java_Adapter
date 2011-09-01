@@ -18,11 +18,11 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.williamvanderhoef.foursquare.BaseTest;
-import com.williamvanderhoef.foursquare.GsonResultsLoader;
-import com.williamvanderhoef.foursquare.JacksonResultsLoader;
-import com.williamvanderhoef.foursquare.ResultsLoader;
 import com.williamvanderhoef.foursquare.adapters.users.UserCheckinsEndpoint;
 import com.williamvanderhoef.foursquare.model.Checkin;
+import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
+import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
+import com.williamvanderhoef.foursquare.parsers.ResultsParser;
 import com.williamvanderhoef.foursquare.responses.UserCheckinsResponse;
 import com.williamvanderhoef.foursquare.types.Items;
 import com.williamvanderhoef.foursquare.types.Results;
@@ -42,11 +42,12 @@ public class CheckinsTest extends BaseTest<UserCheckinsResponse> {
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsLoader<UserCheckinsResponse>> params = new ArrayList<ResultsLoader<UserCheckinsResponse>>();  
+		List<ResultsParser<UserCheckinsResponse>> params = new ArrayList<ResultsParser<UserCheckinsResponse>>();  
         
-		GsonResultsLoader<UserCheckinsResponse> gLoader = new GsonResultsLoader<UserCheckinsResponse>(new UserCheckinsEndpoint());
+		GsonResultsParser<UserCheckinsResponse> gLoader = new GsonResultsParser<UserCheckinsResponse>(new UserCheckinsEndpoint());
 		params.add(gLoader);
-		JacksonResultsLoader<UserCheckinsResponse> jLoader = new JacksonResultsLoader<UserCheckinsResponse>(new UserCheckinsEndpoint());
+		JacksonResultsParser<UserCheckinsResponse> jLoader = new JacksonResultsParser<UserCheckinsResponse>(new UserCheckinsEndpoint());
+		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
 		return Arrays.asList(new Object[][] {
@@ -55,12 +56,12 @@ public class CheckinsTest extends BaseTest<UserCheckinsResponse> {
 		});
 	}
 	
-	public CheckinsTest(ResultsLoader<UserCheckinsResponse> loader)
+	public CheckinsTest(ResultsParser<UserCheckinsResponse> loader)
 	{
 		this.loader = loader;
 	}
 	
-	private ResultsLoader<UserCheckinsResponse> loader = null;
+	private ResultsParser<UserCheckinsResponse> loader = null;
 	
 	/**
 	 * @throws java.lang.Exception

@@ -1,4 +1,4 @@
-package com.williamvanderhoef.foursquare;
+package com.williamvanderhoef.foursquare.parsers;
 
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.DeserializationConfig.Feature;
@@ -10,13 +10,22 @@ import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
 import com.williamvanderhoef.foursquare.types.Results;
 
 
-public class JacksonResultsLoader<T> implements ResultsLoader<T> {
+public class JacksonResultsParser<T> implements ResultsParser<T> {
 
+	@SuppressWarnings({ "rawtypes" })
 	private EndpointAdapter adapter;
 	
-	public JacksonResultsLoader(EndpointAdapter adapter) {
+	private boolean isStrictValidation = false;
+	
+	@SuppressWarnings({ "rawtypes" })
+	public JacksonResultsParser(EndpointAdapter adapter) {
 		
 		this.adapter = adapter;
+	}
+	
+	public void setStrictValidation(boolean isStrict)
+	{
+		this.isStrictValidation = isStrict;
 	}
 	
 	public Results<T> parse(String fileContents) throws Exception
@@ -24,7 +33,7 @@ public class JacksonResultsLoader<T> implements ResultsLoader<T> {
 		ObjectMapper mapper = new ObjectMapper();
 
 		DeserializationConfig cfg = mapper.getDeserializationConfig();
-		cfg.set(Feature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+		cfg.set(Feature.FAIL_ON_UNKNOWN_PROPERTIES, isStrictValidation);
 		mapper.setDeserializationConfig(cfg);
 
 

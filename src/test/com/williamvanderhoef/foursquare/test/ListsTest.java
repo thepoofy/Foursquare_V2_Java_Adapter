@@ -18,11 +18,11 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.williamvanderhoef.foursquare.BaseTest;
-import com.williamvanderhoef.foursquare.GsonResultsLoader;
-import com.williamvanderhoef.foursquare.JacksonResultsLoader;
-import com.williamvanderhoef.foursquare.ResultsLoader;
 import com.williamvanderhoef.foursquare.adapters.users.UsersListsEndpoint;
 import com.williamvanderhoef.foursquare.model.FoursquareList;
+import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
+import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
+import com.williamvanderhoef.foursquare.parsers.ResultsParser;
 import com.williamvanderhoef.foursquare.responses.UsersListsResponse;
 import com.williamvanderhoef.foursquare.types.Group;
 import com.williamvanderhoef.foursquare.types.Groups;
@@ -44,11 +44,12 @@ public class ListsTest extends BaseTest<UsersListsResponse> {
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsLoader<UsersListsResponse>> params = new ArrayList<ResultsLoader<UsersListsResponse>>();  
+		List<ResultsParser<UsersListsResponse>> params = new ArrayList<ResultsParser<UsersListsResponse>>();  
         
-		GsonResultsLoader<UsersListsResponse> gLoader = new GsonResultsLoader<UsersListsResponse>(new UsersListsEndpoint());
+		GsonResultsParser<UsersListsResponse> gLoader = new GsonResultsParser<UsersListsResponse>(new UsersListsEndpoint());
 		params.add(gLoader);
-		JacksonResultsLoader<UsersListsResponse> jLoader = new JacksonResultsLoader<UsersListsResponse>(new UsersListsEndpoint());
+		JacksonResultsParser<UsersListsResponse> jLoader = new JacksonResultsParser<UsersListsResponse>(new UsersListsEndpoint());
+		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
 		return Arrays.asList(new Object[][] {
@@ -57,12 +58,12 @@ public class ListsTest extends BaseTest<UsersListsResponse> {
 		});
 	}
 	
-	public ListsTest(ResultsLoader<UsersListsResponse> loader)
+	public ListsTest(ResultsParser<UsersListsResponse> loader)
 	{
 		this.loader = loader;
 	}
 	
-	private ResultsLoader<UsersListsResponse> loader = null;
+	private ResultsParser<UsersListsResponse> loader = null;
 	
 	/**
 	 * @throws java.lang.Exception

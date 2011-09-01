@@ -18,11 +18,11 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.williamvanderhoef.foursquare.BaseTest;
-import com.williamvanderhoef.foursquare.GsonResultsLoader;
-import com.williamvanderhoef.foursquare.JacksonResultsLoader;
-import com.williamvanderhoef.foursquare.ResultsLoader;
 import com.williamvanderhoef.foursquare.adapters.users.UsersVenueHistoryEndpoint;
 import com.williamvanderhoef.foursquare.model.VenueHistory;
+import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
+import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
+import com.williamvanderhoef.foursquare.parsers.ResultsParser;
 import com.williamvanderhoef.foursquare.responses.UsersVenueHistoryResponse;
 import com.williamvanderhoef.foursquare.types.Items;
 import com.williamvanderhoef.foursquare.types.Results;
@@ -42,11 +42,12 @@ public class VenueHistoryTest extends BaseTest<UsersVenueHistoryResponse> {
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsLoader<UsersVenueHistoryResponse>> params = new ArrayList<ResultsLoader<UsersVenueHistoryResponse>>();  
+		List<ResultsParser<UsersVenueHistoryResponse>> params = new ArrayList<ResultsParser<UsersVenueHistoryResponse>>();  
         
-		GsonResultsLoader<UsersVenueHistoryResponse> gLoader = new GsonResultsLoader<UsersVenueHistoryResponse>(new UsersVenueHistoryEndpoint());
+		GsonResultsParser<UsersVenueHistoryResponse> gLoader = new GsonResultsParser<UsersVenueHistoryResponse>(new UsersVenueHistoryEndpoint());
 		params.add(gLoader);
-		JacksonResultsLoader<UsersVenueHistoryResponse> jLoader = new JacksonResultsLoader<UsersVenueHistoryResponse>(new UsersVenueHistoryEndpoint());
+		JacksonResultsParser<UsersVenueHistoryResponse> jLoader = new JacksonResultsParser<UsersVenueHistoryResponse>(new UsersVenueHistoryEndpoint());
+		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
 		return Arrays.asList(new Object[][] {
@@ -55,12 +56,12 @@ public class VenueHistoryTest extends BaseTest<UsersVenueHistoryResponse> {
 		});
 	}
 	
-	public VenueHistoryTest(ResultsLoader<UsersVenueHistoryResponse> loader)
+	public VenueHistoryTest(ResultsParser<UsersVenueHistoryResponse> loader)
 	{
 		this.loader = loader;
 	}
 	
-	private ResultsLoader<UsersVenueHistoryResponse> loader = null;
+	private ResultsParser<UsersVenueHistoryResponse> loader = null;
 	
 	/**
 	 * @throws java.lang.Exception
