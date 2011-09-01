@@ -56,24 +56,22 @@ public class Photo extends Unique
 	private Checkin checkin;
 	
 	private String visibility;
+	
+//	private Visibility visibility;
 //	private enum Visibility { 
 //		PUBLIC("public"),PRIVATE("private");
 //		private Visibility(String value)
 //		{
 //			this.value = value;
 //		}
-//		@Override
-//		public Visibility valueOf(String v)
-//		{
-//			return PUBLIC;
-//		}
+//	
 //		private String value;
 //		public String toString()
 //		{
 //			return value;
 //		}
 //	}
-	
+//	
 	
 	/**
 	 * @return the createdAt
@@ -182,6 +180,12 @@ public class Photo extends Unique
 	{
 		this.checkin = checkin;
 	}
+//	public Visibility getVisibility() {
+//		return visibility;
+//	}
+//	public void setVisibility(Visibility visibility) {
+//		this.visibility = visibility;
+//	}
 
 	public String getVisibility() {
 		return visibility;
@@ -189,4 +193,6 @@ public class Photo extends Unique
 	public void setVisibility(String visibility) {
 		this.visibility = visibility;
 	}
+	
+	
 }
