@@ -14,7 +14,7 @@ import com.williamvanderhoef.foursquare.types.Unique;
  */
 public class Checkin extends Unique
 {
-	enum CheckinType {checkin, shout, venueless }
+	public enum CheckinType {checkin, shout, venueless }
 	private CheckinType type;
 	
 	/**

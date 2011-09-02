@@ -13,7 +13,7 @@ public class Special
 {
 	private String id;			//	A unique identifier for this special.
 	private SpecialType type;		//One of mayor, count, frequency, or other.
-	enum SpecialType { mayor, count, frequency, regular, friends, swarm, flash, other}
+	public enum SpecialType { mayor, count, frequency, regular, friends, swarm, flash, other}
 	
 	private String message;		//	A message describing the special.
 	private String description;	//  A description of how to unlock the special.

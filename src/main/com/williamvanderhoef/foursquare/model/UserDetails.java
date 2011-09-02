@@ -19,7 +19,7 @@ public class UserDetails extends User
 	 */
 	private UserType type;	//brand,celebrity,user
 	
-	enum UserType { brand, celebrity, user }
+	public enum UserType { brand, celebrity, user }
 	
 	/**
 	 * 	An object containing none, some, or all of twitter, facebook, email, and phone. Both are strings.

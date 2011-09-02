@@ -58,7 +58,7 @@ public class Photo extends Unique
 	private String visibility;
 	
 //	private Visibility visibility;
-//	private enum Visibility { 
+//	public enum Visibility { 
 //		PUBLIC("public"),PRIVATE("private");
 //		private Visibility(String value)
 //		{
