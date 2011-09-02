@@ -2,7 +2,6 @@ package com.williamvanderhoef.foursquare.model;
 
 import com.williamvanderhoef.foursquare.types.Items;
 import com.williamvanderhoef.foursquare.types.LocationCompact;
-import com.williamvanderhoef.foursquare.types.Photo;
 import com.williamvanderhoef.foursquare.types.Source;
 import com.williamvanderhoef.foursquare.types.Unique;
 

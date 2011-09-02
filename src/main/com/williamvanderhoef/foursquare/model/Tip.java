@@ -2,7 +2,6 @@ package com.williamvanderhoef.foursquare.model;
 
 import com.williamvanderhoef.foursquare.model.notification.Notification;
 import com.williamvanderhoef.foursquare.model.notification.NotificationType;
-import com.williamvanderhoef.foursquare.types.Photo;
 import com.williamvanderhoef.foursquare.types.Unique;
 
 /**

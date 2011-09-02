@@ -1,7 +1,6 @@
 package com.williamvanderhoef.foursquare.model;
 
 import com.williamvanderhoef.foursquare.types.Count;
-import com.williamvanderhoef.foursquare.types.Photo;
 import com.williamvanderhoef.foursquare.types.Unique;
 
 /**
