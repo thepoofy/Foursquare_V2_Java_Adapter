@@ -16,6 +16,8 @@ public class Category
 	
 	private String pluralName;
 	
+	private String shortName;
+	
 	private String icon;	//url
 	
 	private List<String> parents;
@@ -60,6 +62,14 @@ public class Category
 		this.pluralName = pluralName;
 	}
 	
+	
+	
+	public String getShortName() {
+		return shortName;
+	}
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
 	/**
 	 * @return the icon
 	 */

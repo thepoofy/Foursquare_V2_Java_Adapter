@@ -29,7 +29,7 @@ public class User extends Unique
 	 * male or female
 	 */
 	
-	enum Gender{ male, female, none }
+	public enum Gender{ male, female, none }
 	
 	private Gender gender;
 	/**
@@ -49,7 +49,7 @@ public class User extends Unique
 	 */
 	private Relationship relationship;
 	
-	enum Relationship { self, friend, pendingMe, pendingThem, followingThem } 
+	public enum Relationship { self, friend, pendingMe, pendingThem, followingThem } 
 	
 	
 	

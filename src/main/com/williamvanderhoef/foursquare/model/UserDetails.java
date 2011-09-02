@@ -1,8 +1,10 @@
 package com.williamvanderhoef.foursquare.model;
 
+
 import com.williamvanderhoef.foursquare.types.Count;
 import com.williamvanderhoef.foursquare.types.Groups;
 import com.williamvanderhoef.foursquare.types.Items;
+import com.williamvanderhoef.foursquare.types.Scores;
 
 
 /**
@@ -43,40 +45,49 @@ public class UserDetails extends User
 	
 	/**
 	 * Contains the count of mayorships for this user and an items array that for now is empty. 
-	 * Use users/XX/mayorships to get actual mayorships.  
+	 * Use users/XXXX/mayorships to get actual mayorships.
+	 * 
+	 * FIXME This is currently returning an empty items list, anticipate this to change this to a Count object.
 	 */
-	private Count mayorships;	//returns all venue that the user is the mayor of
+	private Items<Venue> mayorships;	//returns all venue that the user is the mayor of
 	
 	/**
 	 * Contains the count of tips from this user. 
 	 * May contain an array of selected tips as items, which may or may not be empty. 
 	 * 
 	 */
-	private Items<Tip> tips;
+	private Count tips;
 	/**
 	 * Contains the count of todos this user has. 
 	 * May contain an array of selected todos as items.  
 	 * Full set of items can be requested from the To-do endpoint, but only visible to friends. 
 	 */
-	private Items<Todo> todos;
+	private Count todos;
 	/**
 	 * Contains count of friends for this user and groups of users who are friends. 
 	 * Right now will only contain a group where type is friends, but it's subject to change. 
 	 * Groups are omitted when viewing self. 
 	 * The full set of friends has its own endpoint. 
 	 */
-	private Groups<Items<User>> friends;		
+	private Groups<User> friends;		
 	/**
 	 * Contains count of followers for this user, if they are a brand or celebrity. 
 	 */
 	private Count followers;
+	
+	/**
+	 * 
+	 */
+	private Count following;
 	/**
 	 * 	Contains count of pending friend requests for this user. 
 	 */
 	private Count requests;
 	
-	
-	
+	/**
+	 * XXX undocumented
+	 */
+	private Scores scores;
 	
 	
 	/**
@@ -152,45 +163,18 @@ public class UserDetails extends User
 	/**
 	 * @return the mayorships
 	 */
-	public Count getMayorships()
+	public Items<Venue> getMayorships()
 	{
 		return mayorships;
 	}
 	/**
 	 * @param mayorships the mayorships to set
 	 */
-	public void setMayorships(Count mayorships)
+	public void setMayorships(Items<Venue> mayorships)
 	{
 		this.mayorships = mayorships;
 	}
-	/**
-	 * @return the tips
-	 */
-	public Items<Tip> getTips()
-	{
-		return tips;
-	}
-	/**
-	 * @param tips the tips to set
-	 */
-	public void setTips(Items<Tip> tips)
-	{
-		this.tips = tips;
-	}
-	/**
-	 * @return the todos
-	 */
-	public Items<Todo> getTodos()
-	{
-		return todos;
-	}
-	/**
-	 * @param todos the todos to set
-	 */
-	public void setTodos(Items<Todo> todos)
-	{
-		this.todos = todos;
-	}
+
 	
 	/**
 	 * @param followers the followers to set
@@ -207,20 +191,7 @@ public class UserDetails extends User
 	{
 		this.requests = requests;
 	}
-	/**
-	 * @return the friends
-	 */
-	public Groups<Items<User>> getFriends()
-	{
-		return friends;
-	}
-	/**
-	 * @param friends the friends to set
-	 */
-	public void setFriends(Groups<Items<User>> friends)
-	{
-		this.friends = friends;
-	}
+	
 	/**
 	 * @return the followers
 	 */
@@ -249,4 +220,37 @@ public class UserDetails extends User
 	{
 		this.requests = requests;
 	}
+	public Count getTips() {
+		return tips;
+	}
+	public void setTips(Count tips) {
+		this.tips = tips;
+	}
+	public Count getTodos() {
+		return todos;
+	}
+	public void setTodos(Count todos) {
+		this.todos = todos;
+	}
+	public Groups<User> getFriends() {
+		return friends;
+	}
+	public void setFriends(Groups<User> friends) {
+		this.friends = friends;
+	}
+	public Count getFollowing() {
+		return following;
+	}
+	public void setFollowing(Count following) {
+		this.following = following;
+	}
+	public Scores getScores() {
+		return scores;
+	}
+	public void setScores(Scores scores) {
+		this.scores = scores;
+	}
+	
+	
+	
 }
