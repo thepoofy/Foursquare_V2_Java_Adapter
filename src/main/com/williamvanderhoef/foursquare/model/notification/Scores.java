@@ -8,16 +8,10 @@ package com.williamvanderhoef.foursquare.model.notification;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class Scores implements Notification
+public class Scores extends FoursquareObject
 {
 
 	
-	
-	@Override
-	public NotificationType getType()
-	{
-		return NotificationType.score;
-	}
 	
 	
 

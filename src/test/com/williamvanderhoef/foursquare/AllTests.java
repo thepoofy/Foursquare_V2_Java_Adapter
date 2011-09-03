@@ -6,10 +6,16 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.williamvanderhoef.foursquare.test.CheckinsTest;
 import com.williamvanderhoef.foursquare.test.ListsTest;
+import com.williamvanderhoef.foursquare.test.MayorshipsTest;
+import com.williamvanderhoef.foursquare.test.UserTest;
 import com.williamvanderhoef.foursquare.test.VenueHistoryTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({CheckinsTest.class, VenueHistoryTest.class, ListsTest.class})
+@SuiteClasses({CheckinsTest.class,
+	ListsTest.class,
+	MayorshipsTest.class,
+	UserTest.class,
+	VenueHistoryTest.class})
 public class AllTests {
 
 }

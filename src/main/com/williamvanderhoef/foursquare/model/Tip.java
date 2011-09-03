@@ -1,7 +1,5 @@
 package com.williamvanderhoef.foursquare.model;
 
-import com.williamvanderhoef.foursquare.model.notification.Notification;
-import com.williamvanderhoef.foursquare.model.notification.NotificationType;
 import com.williamvanderhoef.foursquare.types.Unique;
 
 /**
@@ -10,7 +8,7 @@ import com.williamvanderhoef.foursquare.types.Unique;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class Tip extends Unique implements Notification
+public class Tip extends Unique
 {
 	private String text;
 	private Long createdAt;
@@ -128,12 +126,5 @@ public class Tip extends Unique implements Notification
 	{
 		this.venue = venue;
 	}
-
-	@Override
-	public NotificationType getType()
-	{
-		return NotificationType.tip;
-	}
-	
 
 }

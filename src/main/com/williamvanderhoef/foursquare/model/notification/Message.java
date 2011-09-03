@@ -8,17 +8,8 @@ package com.williamvanderhoef.foursquare.model.notification;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class Message implements Notification
+public class Message 
 {
 
-	
-	
-	@Override
-	public NotificationType getType()
-	{
-		return NotificationType.message;
-	}
-	
-	
 
 }

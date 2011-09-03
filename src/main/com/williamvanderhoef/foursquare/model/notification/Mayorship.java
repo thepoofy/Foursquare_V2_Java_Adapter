@@ -1,5 +1,6 @@
 package com.williamvanderhoef.foursquare.model.notification;
 
+
 /**
  * TODO This class is not yet implemented and only returned by the checkins/add endpoint
  * 
@@ -7,15 +8,8 @@ package com.williamvanderhoef.foursquare.model.notification;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class Mayorship implements Notification
+public class Mayorship extends Notification
 {
-	
-	
-	@Override
-	public NotificationType getType()
-	{
-		return NotificationType.mayorship;
-	}
 	
 	
 

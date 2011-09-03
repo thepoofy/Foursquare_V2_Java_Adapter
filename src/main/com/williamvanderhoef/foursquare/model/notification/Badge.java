@@ -14,7 +14,7 @@ import com.williamvanderhoef.foursquare.types.Unique;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class Badge extends Unique implements Notification
+public class Badge extends Unique
 {
 	private String badgeId;
 	private String name;
@@ -114,9 +114,4 @@ public class Badge extends Unique implements Notification
 		this.badgeId = badgeId;
 	}
 
-	@Override
-	public NotificationType getType()
-	{
-		return NotificationType.badge;
-	}
 }

@@ -3,12 +3,15 @@ package com.williamvanderhoef.foursquare;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.williamvanderhoef.foursquare.model.notification.Notification;
+import com.williamvanderhoef.foursquare.model.notification.NotificationTray;
 import com.williamvanderhoef.foursquare.types.Results;
 
 public abstract class BaseTest<T>{
@@ -74,5 +77,22 @@ public abstract class BaseTest<T>{
 		
 		Assert.assertNotNull(results.getResponse());
 	}
-	
+
+	@Test
+	public void testNotifications()
+	{
+		Results<T> results = getResults();
+		
+		List<Notification> notifications = results.getNotifications();
+		
+		Assert.assertNotNull(notifications);
+		
+		Assert.assertTrue(!notifications.isEmpty());
+		
+		Notification notification = notifications.get(0);
+		Assert.assertNotNull(notification);
+		
+		Assert.assertNotNull(notification.getItem());
+		Assert.assertEquals(NotificationTray.class, notification.getItem().getClass());
+	}
 }
