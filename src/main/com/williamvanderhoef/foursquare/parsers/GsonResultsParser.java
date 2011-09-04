@@ -14,8 +14,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
-import com.williamvanderhoef.foursquare.model.notification.FoursquareObject;
-import com.williamvanderhoef.foursquare.model.notification.NotificationTray;
+import com.williamvanderhoef.foursquare.model.notification.Notification;
+import com.williamvanderhoef.foursquare.model.notification.Notifications;
 import com.williamvanderhoef.foursquare.types.Results;
 
 
@@ -36,7 +36,7 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 		
 		g = new GsonBuilder()
 			.setFieldNamingStrategy(new FoursquareFieldNamingStrategy())
-			.registerTypeHierarchyAdapter(FoursquareObject.class, buildDeserializer())
+			.registerTypeHierarchyAdapter(Notifications.class, buildDeserializer())
 			.create();
 	}
 	
@@ -63,26 +63,29 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 	
 	private FoursquareObjectDeserializer buildDeserializer()
 	{
-		FoursquareObjectDeserializer fod = new FoursquareObjectDeserializer();
+		FoursquareObjectDeserializer deserializer = new FoursquareObjectDeserializer();
 		
 		//specify a unique class attribute and the class that it is unique for
-		fod.registerType("unreadCount",NotificationTray.class);
+		for(Notifications.NotificationType type: Notifications.NotificationType.values())
+		{
+			deserializer.registerType(type.name(),type.getTypeOf());
+		}
 		
-		return fod;
+		return deserializer;
 	}
 	
-	class FoursquareObjectDeserializer implements JsonDeserializer<FoursquareObject>
+	class FoursquareObjectDeserializer implements JsonDeserializer<Notifications>
 	{
-		private Map<String, Class<? extends FoursquareObject>> registry = new HashMap<String, Class<? extends FoursquareObject>>();
+		private Map<String, Class<? extends Notification>> registry = new HashMap<String, Class<? extends Notification>>();
 
 		/**
 		 * 
 		 * @param uniqueAttribute
-		 * @param animalClass
+		 * @param notificationClass
 		 */
-		public void registerType(String uniqueAttribute, Class<? extends FoursquareObject> animalClass) 
+		public void registerType(String uniqueAttribute, Class<? extends Notification> notificationClass) 
 		{
-			registry.put(uniqueAttribute, animalClass);
+			registry.put(uniqueAttribute, notificationClass);
 		}
 		
 		/*
@@ -90,20 +93,26 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 		 * @see com.google.gson.JsonDeserializer#deserialize(com.google.gson.JsonElement, java.lang.reflect.Type, com.google.gson.JsonDeserializationContext)
 		 */
 		@Override
-		public FoursquareObject deserialize(JsonElement json, Type typeOf,
+		public Notifications deserialize(JsonElement json, Type typeOf,
 				JsonDeserializationContext context) throws JsonParseException 
 		{
 			JsonObject fsqObject = json.getAsJsonObject();
 			
-			for(String memberName: registry.keySet())
+			if(fsqObject.has("item") 
+					&& fsqObject.has("type")
+					&& registry.get(fsqObject.get("type").getAsString()) != null)
 			{
-				if(fsqObject.has(memberName))
-				{
-					Class<? extends FoursquareObject> instanceClass = registry.get(memberName);
-					
-					Gson g = new Gson();
-					return g.fromJson(fsqObject, instanceClass);
-				}
+				String type = fsqObject.get("type").getAsString();
+				
+				Class<? extends Notification> instanceClass = registry.get(type);
+				Gson g = new Gson();
+				Notification n = g.fromJson(fsqObject.get("item"), instanceClass);
+				
+				Notifications notifications = new Notifications();
+				notifications.setType(type);
+				notifications.setItem(n);
+				
+				return notifications;
 			}
 			
 			return null;

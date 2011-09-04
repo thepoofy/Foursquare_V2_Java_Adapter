@@ -10,7 +10,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.williamvanderhoef.foursquare.model.notification.Notification;
+import com.williamvanderhoef.foursquare.model.notification.Notifications;
 import com.williamvanderhoef.foursquare.model.notification.NotificationTray;
 import com.williamvanderhoef.foursquare.types.Results;
 
@@ -83,16 +83,16 @@ public abstract class BaseTest<T>{
 	{
 		Results<T> results = getResults();
 		
-		List<Notification> notifications = results.getNotifications();
+		List<Notifications> notifications = results.getNotifications();
 		
 		Assert.assertNotNull(notifications);
 		
 		Assert.assertTrue(!notifications.isEmpty());
 		
-		Notification notification = notifications.get(0);
+		Notifications notification = notifications.get(0);
 		Assert.assertNotNull(notification);
 		
-		Assert.assertNotNull(notification.getItem());
+		Assert.assertNotNull( notification.getItem());
 		Assert.assertEquals(NotificationTray.class, notification.getItem().getClass());
 	}
 }

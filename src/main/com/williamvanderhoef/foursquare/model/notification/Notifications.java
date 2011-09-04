@@ -1,51 +1,51 @@
 package com.williamvanderhoef.foursquare.model.notification;
 
-import java.util.List;
-
-import org.codehaus.jackson.annotate.JsonSubTypes;
-import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 /**
+ * com.williamvanderhoef.foursquare.model.notification.FoursquareObject is the base class for all Notification objects.
  * 
- * This is the most difficult class to adapt from json to Java because of the dynamic typing of objects.
- * 
- * Please see http://developer.foursquare.com/docs/responses/notifications.html for a full definition of this object.
- * 
- * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
- *
  */
-
 public class Notifications
 {
-	
-	List<Notification> notifications;
-	
-	
-
-	
-//	/**
-//	 * 
-//	 */
-//	public enum NotificationType
-//	{ badge, tip, score, mayorship, message, notificationTray }
-//	
+	private Notification item;
+	private String type;
 	
 	
-//	/**
-//	 * @return the type
-//	 */
-//	public NotificationType getType()
-//	{
-//		return type;
-//	}
-//	/**
-//	 * @param type the type to set
-//	 */
-//	public void setType(NotificationType type)
-//	{
-//		this.type = type;
-//	}
-
+	public enum NotificationType {
+		notificationTray(NotificationTray.class),
+		tip(TipNotification.class),
+		tipAlert(TipAlertNotification.class),
+		leaderboard(LeaderboardNotification.class),
+		mayorship(Mayorship.class),
+		specials(SpecialsNotification.class),
+		score(ScoreNotification.class),
+		message(Message.class);
+		
+		private Class<? extends Notification> typeOf;
+		
+		private NotificationType(Class<? extends Notification> t)
+		{
+			this.typeOf = t;
+		}
+		public Class<? extends Notification> getTypeOf()
+		{
+			return this.typeOf;
+		}
+	}
 	
+	public Notification getItem() {
+		return item;
+	}
+	
+	public void setItem(Notification item) {
+		this.item = item;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	
 }
+

@@ -14,6 +14,8 @@ import com.williamvanderhoef.foursquare.types.Unique;
  */
 public class Checkin extends Unique
 {
+	private Long createdAt;		//seconds since the epoch
+	
 	public enum CheckinType {checkin, shout, venueless }
 	private CheckinType type;
 	
@@ -21,19 +23,19 @@ public class Checkin extends Unique
 	 * optional If present, it indicates the checkin was marked as private and not sent to friends. 
 	 * It is only being returned because the owner of the checkin is viewing this data.
 	 */
-	private Boolean _private;	//FIXME may require custom deserializer to load this value
-	
-	private User user;
+	private Boolean _private;	//may require custom FieldNamingStrategy for Gson, Jackson uses the getter/setter to load this value
 	private String timeZone;	//timeZone in use where the checkin occurred.
 	private Venue venue;
+	
+	
+	//the rest should be moved to a checkindetails object
+	private User user;
 	private LocationCompact location;	//alternative to venue when Venue not present 
 	private String shout;
-	private Long createdAt;		//seconds since the epoch
 	private Source source;
 	private Event event;
 	private Items<Photo> photos;
 	private Items<Object> comments;		//FIXME add Comment Object once it is defined by foursquare
-	
 	private Boolean isMayor;
 	
 	

@@ -2,7 +2,7 @@ package com.williamvanderhoef.foursquare.types;
 
 import java.util.List;
 
-import com.williamvanderhoef.foursquare.model.notification.Notification;
+import com.williamvanderhoef.foursquare.model.notification.Notifications;
 
 /**
  * 
@@ -16,7 +16,7 @@ public class Results<ResponseType>
 	private Meta meta;
 	private ResponseType response;
 	
-	private List<Notification> notifications;
+	private List<Notifications> notifications;
 	
 	/**
 	 * @return the meta
@@ -46,10 +46,10 @@ public class Results<ResponseType>
 	{
 		this.response = response;
 	}
-	public List<Notification> getNotifications() {
+	public List<Notifications> getNotifications() {
 		return notifications;
 	}
-	public void setNotifications(List<Notification> notifications) {
+	public void setNotifications(List<Notifications> notifications) {
 		this.notifications = notifications;
 	}
 	

@@ -8,8 +8,15 @@ package com.williamvanderhoef.foursquare.model.notification;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class Message 
+public class Message extends Notification
 {
+	private String message;
 
+	public String getMessage() {
+		return message;
+	}
 
+	public void setMessage(String message) {
+		this.message = message;
+	}
 }

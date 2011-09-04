@@ -1,5 +1,6 @@
 package com.williamvanderhoef.foursquare.model;
 
+import com.williamvanderhoef.foursquare.types.Count;
 import com.williamvanderhoef.foursquare.types.Unique;
 
 /**
@@ -10,13 +11,45 @@ import com.williamvanderhoef.foursquare.types.Unique;
  */
 public class Tip extends Unique
 {
-	private String text;
 	private Long createdAt;
+	private String text;
+	
+	/**
+	 * optional A URL for more information.
+	 */
 	private String url;
+	/**
+	 * optional One of todo or done, depending on the user's relationship to the tip. Absent if there is no relationship
+	 */
 	private String status;
+
+	/**
+	 * optional If there is a photo for this tip and the tip is not already container inside of a photo element, details about the photo.
+	 */
 	private Photo photo;
+	
+	/**
+	 * optional If the context allows tips from multiple users, the compact user that created this tip.
+	 */
 	private User user;
+	
+	/**
+	 * optional If the context allows tips from multiple venues, the compact venue for this tip.
+	 */
 	private Venue venue;
+	
+	//TODO move todo and done to details object
+	//TODO see if todo and done are actually Groups<User>
+	/**
+	 * The count of users who have marked this tip todo, and  groups containing any friends who have marked it to-do. 
+	 * The groups included are subject to change. (Note that to-dos are only visible to friends!)
+	 */
+	private Count todo;	
+	/**
+	 * The count of users who have done this tip todo, and  groups containing any friends and others who have marked it done. 
+	 * The groups included are subject to change.
+	 */
+	private Count done;
 	
 	
 	
@@ -126,5 +159,18 @@ public class Tip extends Unique
 	{
 		this.venue = venue;
 	}
+	public Count getTodo() {
+		return todo;
+	}
+	public void setTodo(Count todo) {
+		this.todo = todo;
+	}
+	public Count getDone() {
+		return done;
+	}
+	public void setDone(Count done) {
+		this.done = done;
+	}
 
+	
 }

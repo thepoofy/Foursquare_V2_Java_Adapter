@@ -2,11 +2,8 @@ package com.williamvanderhoef.foursquare.parsers;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.Version;
@@ -22,8 +19,8 @@ import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jackson.type.JavaType;
 
 import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
-import com.williamvanderhoef.foursquare.model.notification.FoursquareObject;
-import com.williamvanderhoef.foursquare.model.notification.NotificationTray;
+import com.williamvanderhoef.foursquare.model.notification.Notification;
+import com.williamvanderhoef.foursquare.model.notification.Notifications;
 import com.williamvanderhoef.foursquare.types.Results;
 
 
@@ -66,55 +63,56 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 	private Module createNotificationModule()
 	{
 		NotificationDeserializer deserializer = new NotificationDeserializer();
-		deserializer.registerType("unreadCount", NotificationTray.class);
-//		deserializer.registerAnimal("favorite_toy", Cat.class);
-//		deserializer.registerAnimal("wing_span", Bird.class);
+		
+		//specify a unique class attribute and the class that it is unique for
+		for(Notifications.NotificationType type: Notifications.NotificationType.values())
+		{
+			deserializer.registerType(type.name(),type.getTypeOf());
+		}
 		
 		SimpleModule module = new SimpleModule(
 				"PolymorphicNotificationDeserializerModule", new Version(1, 0, 0, null));
-		module.addDeserializer(FoursquareObject.class, deserializer);
+		module.addDeserializer(Notifications.class, deserializer);
 
 		return module;  
 	}
 	
-	class NotificationDeserializer extends StdDeserializer<FoursquareObject>  
+	class NotificationDeserializer extends StdDeserializer<Notifications>  
 	{  
-	  private Map<String, Class<? extends FoursquareObject>> registry =  
-	      new HashMap<String, Class<? extends FoursquareObject>>();  
+		private Map<String, Class<? extends Notification>> registry = new HashMap<String, Class<? extends Notification>>();
+
+		NotificationDeserializer() {
+			super(Notifications.class);
+		}
+
+		void registerType(String uniqueAttribute, Class<? extends Notification> animalClass) {
+			registry.put(uniqueAttribute, animalClass);
+		}
 	  
-	  NotificationDeserializer()  
-	  {  
-	    super(FoursquareObject.class);  
-	  }  
-	  
-	  void registerType(String uniqueAttribute,  
-	      Class<? extends FoursquareObject> animalClass)  
-	  {  
-	    registry.put(uniqueAttribute, animalClass);  
-	  }  
-	  
-	  @Override  
-	  public FoursquareObject deserialize(  
-	      JsonParser jp, DeserializationContext ctxt)   
-	      throws IOException, JsonProcessingException  
-	  {  
-	    ObjectMapper mapper = (ObjectMapper) jp.getCodec();  
-	    ObjectNode root = (ObjectNode) mapper.readTree(jp);  
-	    Class<? extends FoursquareObject> animalClass = null;  
-	    Iterator<Entry<String, JsonNode>> elementsIterator =   
-	        root.getFields();  
-	    while (elementsIterator.hasNext())  
-	    {  
-	      Entry<String, JsonNode> element=elementsIterator.next();  
-	      String name = element.getKey();  
-	      if (registry.containsKey(name))  
-	      {  
-	        animalClass = registry.get(name);  
-	        break;  
-	      }  
-	    }  
-	    if (animalClass == null) return null;  
-	    return mapper.readValue(root, animalClass);  
-	  }  
-	}  
+		@Override
+		public Notifications deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException 
+		{
+			ObjectMapper mapper = (ObjectMapper) jp.getCodec();
+			ObjectNode fsqObject = (ObjectNode) mapper.readTree(jp);
+			
+			if(fsqObject.has("item") 
+					&& fsqObject.has("type")
+					&& registry.get(fsqObject.get("type").getValueAsText()) != null)
+			{
+				String type = fsqObject.get("type").getValueAsText();
+				
+				Class<? extends Notification> instanceClass = registry.get(type);
+				
+				Notification n = mapper.readValue(fsqObject.get("item"), instanceClass);
+				
+				Notifications notifications = new Notifications();
+				notifications.setType(type);
+				notifications.setItem(n);
+				
+				return notifications;
+			}
+			
+			return null;
+		}
+	}
 }

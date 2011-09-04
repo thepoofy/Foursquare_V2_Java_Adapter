@@ -1,8 +1,7 @@
-package com.williamvanderhoef.foursquare.model.notification;
+package com.williamvanderhoef.foursquare.model;
 
 import java.util.List;
 
-import com.williamvanderhoef.foursquare.model.ImageDefinition;
 import com.williamvanderhoef.foursquare.types.Checkins;
 import com.williamvanderhoef.foursquare.types.Unique;
 
