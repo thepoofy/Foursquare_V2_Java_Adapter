@@ -1,9 +1,9 @@
 package com.williamvanderhoef.foursquare.model;
 
-import com.williamvanderhoef.foursquare.types.Items;
-import com.williamvanderhoef.foursquare.types.Size;
-import com.williamvanderhoef.foursquare.types.Source;
-import com.williamvanderhoef.foursquare.types.Unique;
+import com.williamvanderhoef.foursquare.model.subtypes.Items;
+import com.williamvanderhoef.foursquare.model.subtypes.Size;
+import com.williamvanderhoef.foursquare.model.subtypes.Source;
+import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 
 /**
  * @see http://developer.foursquare.com/docs/responses/photo.html

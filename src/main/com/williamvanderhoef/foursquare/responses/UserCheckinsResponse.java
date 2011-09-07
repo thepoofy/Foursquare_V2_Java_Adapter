@@ -1,7 +1,7 @@
 package com.williamvanderhoef.foursquare.responses;
 
 import com.williamvanderhoef.foursquare.model.Checkin;
-import com.williamvanderhoef.foursquare.types.Items;
+import com.williamvanderhoef.foursquare.model.subtypes.Items;
 
 public class UserCheckinsResponse
 {

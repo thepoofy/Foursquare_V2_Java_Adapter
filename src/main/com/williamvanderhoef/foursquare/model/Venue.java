@@ -2,11 +2,11 @@ package com.williamvanderhoef.foursquare.model;
 
 import java.util.List;
 
-import com.williamvanderhoef.foursquare.types.Category;
-import com.williamvanderhoef.foursquare.types.Groups;
-import com.williamvanderhoef.foursquare.types.LocationDetails;
-import com.williamvanderhoef.foursquare.types.Stats;
-import com.williamvanderhoef.foursquare.types.Unique;
+import com.williamvanderhoef.foursquare.model.subtypes.Category;
+import com.williamvanderhoef.foursquare.model.subtypes.Groups;
+import com.williamvanderhoef.foursquare.model.subtypes.LocationDetails;
+import com.williamvanderhoef.foursquare.model.subtypes.Stats;
+import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 
 
 /**
@@ -44,7 +44,7 @@ public class Venue extends Unique
 	 * All categories will have a string id, icon URL, and parents (an array of parent category names in increasing specificity). 
 	 * For the complete set of categories, See Category. TODO broken link
 	 * 
-	 * @see com.williamvanderhoef.foursquare.types.Category
+	 * @see com.williamvanderhoef.foursquare.model.subtypes.Category
 	 */
 	private List<Category> categories;
 	

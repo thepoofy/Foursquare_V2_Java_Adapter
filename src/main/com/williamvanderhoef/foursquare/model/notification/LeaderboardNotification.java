@@ -2,8 +2,8 @@ package com.williamvanderhoef.foursquare.model.notification;
 
 import java.util.List;
 
-import com.williamvanderhoef.foursquare.types.Leaderboard;
-import com.williamvanderhoef.foursquare.types.Score;
+import com.williamvanderhoef.foursquare.model.subtypes.Leaderboard;
+import com.williamvanderhoef.foursquare.model.subtypes.Score;
 
 public class LeaderboardNotification extends Notification{
 

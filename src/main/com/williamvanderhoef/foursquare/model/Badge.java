@@ -2,8 +2,8 @@ package com.williamvanderhoef.foursquare.model;
 
 import java.util.List;
 
-import com.williamvanderhoef.foursquare.types.Checkins;
-import com.williamvanderhoef.foursquare.types.Unique;
+import com.williamvanderhoef.foursquare.model.subtypes.Checkins;
+import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 
 /**
  * As defined on

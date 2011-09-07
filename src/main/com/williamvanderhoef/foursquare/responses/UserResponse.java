@@ -2,7 +2,7 @@ package com.williamvanderhoef.foursquare.responses;
 
 import com.williamvanderhoef.foursquare.model.UserDetails;
 
-public class UserResponse
+public class UserResponse implements GetResponseBase
 {
 	private UserDetails user;
 

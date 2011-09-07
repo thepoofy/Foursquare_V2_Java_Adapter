@@ -13,24 +13,22 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
+import com.williamvanderhoef.foursquare.adapters.DefinedType;
 import com.williamvanderhoef.foursquare.model.notification.Notification;
 import com.williamvanderhoef.foursquare.model.notification.Notifications;
-import com.williamvanderhoef.foursquare.types.Results;
+import com.williamvanderhoef.foursquare.model.subtypes.Results;
 
 
 public class GsonResultsParser<T> implements ResultsParser<T> {
 
-	@SuppressWarnings({ "rawtypes" })
-	private EndpointAdapter adapter;
+	private DefinedType adapter;
 	private final Gson g;
 	
 	/**
 	 * 
 	 * @param adapter
 	 */
-	@SuppressWarnings({ "rawtypes" })	//the EndpointAdapter type doesn't matter, it's getType() is defines the java.lang.reflect.Type
-	public GsonResultsParser(EndpointAdapter adapter) {
+	public GsonResultsParser(DefinedType adapter){
 		
 		this.adapter = adapter;
 		

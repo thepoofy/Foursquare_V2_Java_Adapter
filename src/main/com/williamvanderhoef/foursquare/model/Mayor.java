@@ -1,6 +1,6 @@
 package com.williamvanderhoef.foursquare.model;
 
-import com.williamvanderhoef.foursquare.types.Count;
+import com.williamvanderhoef.foursquare.model.subtypes.Count;
 
 public class Mayor extends Count
 {

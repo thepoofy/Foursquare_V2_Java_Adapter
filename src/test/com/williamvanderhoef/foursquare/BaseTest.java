@@ -10,9 +10,10 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.williamvanderhoef.foursquare.model.notification.Notifications;
+import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
 import com.williamvanderhoef.foursquare.model.notification.NotificationTray;
-import com.williamvanderhoef.foursquare.types.Results;
+import com.williamvanderhoef.foursquare.model.notification.Notifications;
+import com.williamvanderhoef.foursquare.model.subtypes.Results;
 
 public abstract class BaseTest<T>{
 
@@ -43,6 +44,8 @@ public abstract class BaseTest<T>{
 	{
 		return this.results;
 	}
+	
+	
 	
 	
 	/**

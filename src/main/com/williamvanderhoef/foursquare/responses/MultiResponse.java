@@ -1,7 +1,7 @@
 package com.williamvanderhoef.foursquare.responses;
 
 import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
-import com.williamvanderhoef.foursquare.types.Results;
+import com.williamvanderhoef.foursquare.model.subtypes.Results;
 
 
 public class MultiResponse<T1, T2, T3, T4, T5>

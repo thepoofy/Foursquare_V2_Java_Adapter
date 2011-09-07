@@ -2,7 +2,7 @@ package com.williamvanderhoef.foursquare.responses;
 
 
 import com.williamvanderhoef.foursquare.model.FoursquareList;
-import com.williamvanderhoef.foursquare.types.Groups;
+import com.williamvanderhoef.foursquare.model.subtypes.Groups;
 
 /**
  * Example found at http://developer.foursquare.com/docs/explore.html#req=venues/trending%3Fll%3D40.7,-74
@@ -10,7 +10,7 @@ import com.williamvanderhoef.foursquare.types.Groups;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class UsersListsResponse
+public class UsersListsResponse implements ResponseBase
 {
 	private Groups<FoursquareList> lists;
 

@@ -1,7 +1,7 @@
 package com.williamvanderhoef.foursquare.responses;
 
 import com.williamvanderhoef.foursquare.model.VenueHistory;
-import com.williamvanderhoef.foursquare.types.Items;
+import com.williamvanderhoef.foursquare.model.subtypes.Items;
 
 /**
  * Example found at http://developer.foursquare.com/docs/explore.html#req=venues/trending%3Fll%3D40.7,-74

@@ -2,7 +2,7 @@ package com.williamvanderhoef.foursquare.model.notification;
 
 import java.util.List;
 
-import com.williamvanderhoef.foursquare.types.Score;
+import com.williamvanderhoef.foursquare.model.subtypes.Score;
 
 public class ScoreNotification extends Notification{
 

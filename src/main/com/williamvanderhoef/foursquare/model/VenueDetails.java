@@ -2,8 +2,8 @@ package com.williamvanderhoef.foursquare.model;
 
 import java.util.List;
 
-import com.williamvanderhoef.foursquare.types.Count;
-import com.williamvanderhoef.foursquare.types.Groups;
+import com.williamvanderhoef.foursquare.model.subtypes.Count;
+import com.williamvanderhoef.foursquare.model.subtypes.Groups;
 
 /**
  * As defined on <a href="http://developer.foursquare.com/docs/responses/venue.html">Foursquare Developers - Venue</a>

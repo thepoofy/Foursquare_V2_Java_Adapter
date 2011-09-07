@@ -4,12 +4,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.williamvanderhoef.foursquare.test.CheckinAddTest;
-import com.williamvanderhoef.foursquare.test.CheckinsTest;
-import com.williamvanderhoef.foursquare.test.ListsTest;
-import com.williamvanderhoef.foursquare.test.MayorshipsTest;
-import com.williamvanderhoef.foursquare.test.UserTest;
-import com.williamvanderhoef.foursquare.test.VenueHistoryTest;
+import com.williamvanderhoef.foursquare.test.endpoints.CheckinAddTest;
+import com.williamvanderhoef.foursquare.test.endpoints.CheckinsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.ListsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.MayorshipsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserTest;
+import com.williamvanderhoef.foursquare.test.endpoints.VenueHistoryTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({CheckinsTest.class,

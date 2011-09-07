@@ -1,6 +1,6 @@
 package com.williamvanderhoef.foursquare.model;
 
-import com.williamvanderhoef.foursquare.types.Groups;
+import com.williamvanderhoef.foursquare.model.subtypes.Groups;
 
 /**
  * As documented on <a href="http://developer.foursquare.com/docs/responses/tip.html">Foursquare Developers - Tip Response</a>

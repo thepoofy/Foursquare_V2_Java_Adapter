@@ -3,7 +3,7 @@ package com.williamvanderhoef.foursquare.responses;
 import java.util.List;
 
 import com.williamvanderhoef.foursquare.model.Venue;
-import com.williamvanderhoef.foursquare.types.Group;
+import com.williamvanderhoef.foursquare.model.subtypes.Group;
 
 
 public class VenueSearchResponse

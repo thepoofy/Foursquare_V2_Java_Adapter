@@ -1,10 +1,10 @@
 package com.williamvanderhoef.foursquare.model;
 
 
-import com.williamvanderhoef.foursquare.types.Count;
-import com.williamvanderhoef.foursquare.types.Groups;
-import com.williamvanderhoef.foursquare.types.Items;
-import com.williamvanderhoef.foursquare.types.Scores;
+import com.williamvanderhoef.foursquare.model.subtypes.Count;
+import com.williamvanderhoef.foursquare.model.subtypes.Groups;
+import com.williamvanderhoef.foursquare.model.subtypes.Items;
+import com.williamvanderhoef.foursquare.model.subtypes.Scores;
 
 
 /**

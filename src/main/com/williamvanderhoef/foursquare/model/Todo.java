@@ -1,6 +1,6 @@
 package com.williamvanderhoef.foursquare.model;
 
-import com.williamvanderhoef.foursquare.types.Unique;
+import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 
 /**
  * As documented on <a href="http://developer.foursquare.com/docs/responses/todo.html">Foursquare Developers - Todo Response</a>

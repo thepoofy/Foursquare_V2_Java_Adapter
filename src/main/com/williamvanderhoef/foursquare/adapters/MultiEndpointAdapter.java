@@ -4,34 +4,36 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonStreamParser;
+import com.williamvanderhoef.foursquare.responses.GetResponseBase;
 import com.williamvanderhoef.foursquare.responses.MultiResponse;
-import com.williamvanderhoef.foursquare.types.Meta;
-import com.williamvanderhoef.foursquare.types.Results;
 
 /**
  *
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
+ *
+ * @deprecated
  *
  * @param <T1>
  * @param <T2>
  * @param <T3>
  * @param <T4>
  * @param <T5>
+
  */
+@Deprecated
 public class MultiEndpointAdapter<T1, T2, T3, T4, T5> extends EndpointAdapter<MultiResponse<T1, T2, T3, T4, T5>>
 {
-	List<EndpointAdapter> responseAdapters = new ArrayList<EndpointAdapter>();
+	List<EndpointAdapter<? extends GetResponseBase>> responseAdapters = new ArrayList<EndpointAdapter<? extends GetResponseBase>>();
 
 	public Type defineType(){
+		for(EndpointAdapter adapter: responseAdapters)
+		{
+			
+		}
 		throw new RuntimeException("MultiEndpointAdapter uses dynamic typing and cannot define a type.");
 	}
 
-	public void addAdapter(EndpointAdapter adapter){
+	public void addAdapter(EndpointAdapter<? extends GetResponseBase> adapter){
 		if(adapter != null)
 		{
 			responseAdapters.add(adapter);

@@ -1,6 +1,6 @@
 package com.williamvanderhoef.foursquare.parsers;
 
-import com.williamvanderhoef.foursquare.types.Results;
+import com.williamvanderhoef.foursquare.model.subtypes.Results;
 
 
 public interface ResultsParser<T> {

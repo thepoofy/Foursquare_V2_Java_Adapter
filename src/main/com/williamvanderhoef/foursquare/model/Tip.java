@@ -1,7 +1,7 @@
 package com.williamvanderhoef.foursquare.model;
 
-import com.williamvanderhoef.foursquare.types.Count;
-import com.williamvanderhoef.foursquare.types.Unique;
+import com.williamvanderhoef.foursquare.model.subtypes.Count;
+import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 
 /**
  * As documented on <a href="http://developer.foursquare.com/docs/responses/tip.html">Foursquare Developers - Tip</a>

@@ -18,21 +18,19 @@ import org.codehaus.jackson.map.type.TypeFactory;
 import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jackson.type.JavaType;
 
-import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
+import com.williamvanderhoef.foursquare.adapters.DefinedType;
 import com.williamvanderhoef.foursquare.model.notification.Notification;
 import com.williamvanderhoef.foursquare.model.notification.Notifications;
-import com.williamvanderhoef.foursquare.types.Results;
+import com.williamvanderhoef.foursquare.model.subtypes.Results;
 
 
 public class JacksonResultsParser<T> implements ResultsParser<T> {
 
-	@SuppressWarnings({ "rawtypes" })
-	private EndpointAdapter adapter;
+	private DefinedType adapter;
 	
 	private boolean isStrictValidation = false;
 	
-	@SuppressWarnings({ "rawtypes" })
-	public JacksonResultsParser(EndpointAdapter adapter) {
+	public JacksonResultsParser(DefinedType adapter) {
 		
 		this.adapter = adapter;
 	}
@@ -53,6 +51,7 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 		mapper.registerModule(createNotificationModule());
 
 		TypeFactory tf = TypeFactory.defaultInstance();
+		
 		JavaType jt = tf.constructType(adapter.defineType());
 
 		return mapper.readValue(fileContents, jt);
