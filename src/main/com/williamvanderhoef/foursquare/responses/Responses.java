@@ -1,7 +1,6 @@
 package com.williamvanderhoef.foursquare.responses;
 
 import java.lang.reflect.Type;
-import java.util.List;
 
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
@@ -11,21 +10,29 @@ public class Responses<
 		T2 extends Results<?>
 	> implements GetResponseBase, DefinedType{
 
-	private List<Results<? extends GetResponseBase>> responses;
+	private T1 result1;
+	private T2 result2;
 
-	public List<Results<? extends GetResponseBase>> getResponses() {
-		return responses;
-	}
-
-	public void setResponses(List<Results<? extends GetResponseBase>> responses) {
-		this.responses = responses;
-	}
+	
 
 	@Override
 	public Type defineType() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
+
+
+	public T1 getResult1() {
+		return result1;
+	}
+	public void setResult1(T1 result1) {
+		this.result1 = result1;
+	}
+	public T2 getResult2() {
+		return result2;
+	}
+	public void setResult2(T2 result2) {
+		this.result2 = result2;
+	}
 }

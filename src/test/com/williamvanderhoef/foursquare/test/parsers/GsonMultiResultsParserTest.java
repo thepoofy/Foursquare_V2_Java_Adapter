@@ -1,7 +1,6 @@
 package com.williamvanderhoef.foursquare.test.parsers;
 
 import java.lang.reflect.Type;
-import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,21 +23,20 @@ import com.williamvanderhoef.foursquare.responses.UsersBadgesResponse;
  */
 public class GsonMultiResultsParserTest extends BaseTest<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>{
 
-	public static class CustomMultiResponse implements DefinedType{
+	
+	
+	public static class CustomMultiResponse extends Responses<Results<UserResponse>, Results<UsersBadgesResponse>> implements DefinedType, GetResponseBase{
 
-		
-		
 		@Override
 		public Type defineType() {
-			return new TypeToken<Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>>() {}.getType();
+			return this.getClass();
 		}
-		
 	}
 	
 	public static DefinedType getTypeDefinition()
 	{
-		Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>> results = new Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>(){};
-		
+		//Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>> results = new Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>(){};
+		CustomMultiResponse results = new CustomMultiResponse();
 		
 		return results;
 	}
@@ -55,6 +53,7 @@ public class GsonMultiResultsParserTest extends BaseTest<Responses<Results<UserR
 		DefinedType endpoint = getTypeDefinition();
 		
 		Type endpointType = endpoint.defineType();
+		
 		
 		Type tokenizedType = new TypeToken<Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>>() {}.getType();
 
@@ -77,12 +76,11 @@ public class GsonMultiResultsParserTest extends BaseTest<Responses<Results<UserR
 	@Test
 	public void testUser()
 	{
-		List<Results<? extends GetResponseBase>> results = this.getResults().getResponse().getResponses();
-		
-		
-		Results<UserResponse> user = (Results<UserResponse>)results.get(0);
+		Results<UserResponse> user = this.getResults().getResponse().getResult1();
+		Results<UsersBadgesResponse> badges = this.getResults().getResponse().getResult2();
 		
 		Assert.assertNotNull(user);
+		Assert.assertNotNull(badges);
 	}
 	
 	@Test
