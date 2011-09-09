@@ -25,14 +25,14 @@ import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
-import com.williamvanderhoef.foursquare.responses.UsersVenueHistoryResponse;
+import com.williamvanderhoef.foursquare.responses.UserVenueHistoryResponse;
 
 /**
  * @author Willum
  *
  */
 @RunWith(Parameterized.class)
-public class VenueHistoryTest extends BaseTest<UsersVenueHistoryResponse> {
+public class VenueHistoryTest extends BaseTest<UserVenueHistoryResponse> {
 
 	@Override
 	public String getFileName()
@@ -42,17 +42,17 @@ public class VenueHistoryTest extends BaseTest<UsersVenueHistoryResponse> {
 	
 	public static DefinedType getEndpoint()
 	{
-		return new Results<UsersVenueHistoryResponse>(){};
+		return new Results<UserVenueHistoryResponse>(){};
 	}
 	
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsParser<UsersVenueHistoryResponse>> params = new ArrayList<ResultsParser<UsersVenueHistoryResponse>>();  
+		List<ResultsParser<UserVenueHistoryResponse>> params = new ArrayList<ResultsParser<UserVenueHistoryResponse>>();  
         
-		GsonResultsParser<UsersVenueHistoryResponse> gLoader = new GsonResultsParser<UsersVenueHistoryResponse>(getEndpoint());
+		GsonResultsParser<UserVenueHistoryResponse> gLoader = new GsonResultsParser<UserVenueHistoryResponse>(getEndpoint());
 		params.add(gLoader);
-		JacksonResultsParser<UsersVenueHistoryResponse> jLoader = new JacksonResultsParser<UsersVenueHistoryResponse>(getEndpoint());
+		JacksonResultsParser<UserVenueHistoryResponse> jLoader = new JacksonResultsParser<UserVenueHistoryResponse>(getEndpoint());
 		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
@@ -62,12 +62,12 @@ public class VenueHistoryTest extends BaseTest<UsersVenueHistoryResponse> {
 		});
 	}
 	
-	public VenueHistoryTest(ResultsParser<UsersVenueHistoryResponse> loader)
+	public VenueHistoryTest(ResultsParser<UserVenueHistoryResponse> loader)
 	{
 		this.loader = loader;
 	}
 	
-	private ResultsParser<UsersVenueHistoryResponse> loader = null;
+	private ResultsParser<UserVenueHistoryResponse> loader = null;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -85,7 +85,7 @@ public class VenueHistoryTest extends BaseTest<UsersVenueHistoryResponse> {
 	@Test
 	public void testItems() {
 		
-		Results<UsersVenueHistoryResponse> results = getResults();
+		Results<UserVenueHistoryResponse> results = getResults();
 		
 		Items<VenueHistory> items = results.getResponse().getVenues();
 		

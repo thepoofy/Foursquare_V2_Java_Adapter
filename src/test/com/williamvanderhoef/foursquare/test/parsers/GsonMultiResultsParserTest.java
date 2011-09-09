@@ -16,14 +16,14 @@ import com.williamvanderhoef.foursquare.responses.GetResponseBase;
 import com.williamvanderhoef.foursquare.responses.Responses;
 import com.williamvanderhoef.foursquare.responses.ResultsTypes;
 import com.williamvanderhoef.foursquare.responses.UserResponse;
-import com.williamvanderhoef.foursquare.responses.UsersBadgesResponse;
+import com.williamvanderhoef.foursquare.responses.UserBadgesResponse;
 
 /**
  * 
  * This test requires GSON
  *
  */
-public class GsonMultiResultsParserTest extends BaseTest<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>{
+public class GsonMultiResultsParserTest extends BaseTest<Responses<Results<UserResponse>, Results<UserBadgesResponse>>>{
 
 	public static class CustomMultiResponse implements DefinedType{
 
@@ -56,7 +56,7 @@ public class GsonMultiResultsParserTest extends BaseTest<Responses<Results<UserR
 		
 		Type endpointType = endpoint.defineType();
 		
-		Type tokenizedType = new TypeToken<Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>>() {}.getType();
+		Type tokenizedType = new TypeToken<Results<Responses<Results<UserResponse>, Results<UserBadgesResponse>>>>() {}.getType();
 
 		Assert.assertEquals(tokenizedType, endpointType);
 	}
@@ -67,9 +67,9 @@ public class GsonMultiResultsParserTest extends BaseTest<Responses<Results<UserR
 	{
 		super.setUp();
 		
-		GsonResultsParser<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>> gLoader = new GsonResultsParser<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>(getTypeDefinition());
+		GsonResultsParser<Responses<Results<UserResponse>, Results<UserBadgesResponse>>> gLoader = new GsonResultsParser<Responses<Results<UserResponse>, Results<UserBadgesResponse>>>(getTypeDefinition());
 		
-		Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>> results = gLoader.parse(this.getFileContents());
+		Results<Responses<Results<UserResponse>, Results<UserBadgesResponse>>> results = gLoader.parse(this.getFileContents());
 		
 		this.setResults(results);
 	}

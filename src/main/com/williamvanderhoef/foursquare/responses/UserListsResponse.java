@@ -10,7 +10,7 @@ import com.williamvanderhoef.foursquare.model.subtypes.Groups;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class UsersListsResponse implements ResponseBase
+public class UserListsResponse implements ResponseBase
 {
 	private Groups<FoursquareList> lists;
 

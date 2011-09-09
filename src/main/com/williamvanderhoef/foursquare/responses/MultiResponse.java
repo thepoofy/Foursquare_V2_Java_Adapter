@@ -1,9 +1,13 @@
 package com.williamvanderhoef.foursquare.responses;
 
+
 import com.williamvanderhoef.foursquare.adapters.EndpointAdapter;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
 
-
+/**
+ * @deprecated
+ */
+@Deprecated
 public class MultiResponse<T1, T2, T3, T4, T5>
 {
 	private Converter<T1> result1 = new Converter<T1>();
