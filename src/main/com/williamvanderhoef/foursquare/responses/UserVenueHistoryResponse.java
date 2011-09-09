@@ -9,7 +9,7 @@ import com.williamvanderhoef.foursquare.model.subtypes.Items;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class UsersVenueHistoryResponse
+public class UserVenueHistoryResponse
 {
 	private Items<VenueHistory> venues;
 

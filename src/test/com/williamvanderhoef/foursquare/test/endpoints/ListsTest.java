@@ -26,14 +26,14 @@ import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
-import com.williamvanderhoef.foursquare.responses.UsersListsResponse;
+import com.williamvanderhoef.foursquare.responses.UserListsResponse;
 
 /**
  * @author Willum
  *
  */
 @RunWith(Parameterized.class)
-public class ListsTest extends BaseTest<UsersListsResponse> {
+public class ListsTest extends BaseTest<UserListsResponse> {
 
 	@Override
 	public String getFileName()
@@ -44,16 +44,16 @@ public class ListsTest extends BaseTest<UsersListsResponse> {
 	
 	public static DefinedType getEndpoint()
 	{
-		return new Results<UsersListsResponse>(){};
+		return new Results<UserListsResponse>(){};
 	}
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsParser<UsersListsResponse>> params = new ArrayList<ResultsParser<UsersListsResponse>>();  
+		List<ResultsParser<UserListsResponse>> params = new ArrayList<ResultsParser<UserListsResponse>>();  
         
-		GsonResultsParser<UsersListsResponse> gLoader = new GsonResultsParser<UsersListsResponse>(getEndpoint());
+		GsonResultsParser<UserListsResponse> gLoader = new GsonResultsParser<UserListsResponse>(getEndpoint());
 		params.add(gLoader);
-		JacksonResultsParser<UsersListsResponse> jLoader = new JacksonResultsParser<UsersListsResponse>(getEndpoint());
+		JacksonResultsParser<UserListsResponse> jLoader = new JacksonResultsParser<UserListsResponse>(getEndpoint());
 		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
@@ -63,12 +63,12 @@ public class ListsTest extends BaseTest<UsersListsResponse> {
 		});
 	}
 	
-	public ListsTest(ResultsParser<UsersListsResponse> loader)
+	public ListsTest(ResultsParser<UserListsResponse> loader)
 	{
 		this.loader = loader;
 	}
 	
-	private ResultsParser<UsersListsResponse> loader = null;
+	private ResultsParser<UserListsResponse> loader = null;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -86,7 +86,7 @@ public class ListsTest extends BaseTest<UsersListsResponse> {
 	@Test
 	public void testGroups() {
 		
-		Results<UsersListsResponse> results = getResults();
+		Results<UserListsResponse> results = getResults();
 		
 		Groups<FoursquareList> groups = results.getResponse().getLists();
 		

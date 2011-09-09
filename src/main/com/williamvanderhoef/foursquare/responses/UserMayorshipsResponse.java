@@ -8,7 +8,7 @@ import com.williamvanderhoef.foursquare.model.subtypes.VenueWrapper;
  * @author <a href="mailto://william.vanderhoef@gmail.com">William Vanderhoef</a>
  *
  */
-public class UsersMayorshipsResponse
+public class UserMayorshipsResponse
 {
 	private Items<VenueWrapper> mayorships;
 

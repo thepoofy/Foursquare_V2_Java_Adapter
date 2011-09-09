@@ -5,7 +5,7 @@ import java.util.Map;
 import com.williamvanderhoef.foursquare.model.Badge;
 import com.williamvanderhoef.foursquare.model.subtypes.Groups;
 
-public class UsersBadgesResponse implements GetResponseBase{
+public class UserBadgesResponse implements GetResponseBase{
 
 	//TODO add a type for grouped groups, these groups include ImageDefinitions and N nested groups.
 	private Groups<String> sets;

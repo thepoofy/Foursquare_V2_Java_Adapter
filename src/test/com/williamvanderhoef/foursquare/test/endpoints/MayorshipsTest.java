@@ -26,14 +26,14 @@ import com.williamvanderhoef.foursquare.model.subtypes.VenueWrapper;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
-import com.williamvanderhoef.foursquare.responses.UsersMayorshipsResponse;
+import com.williamvanderhoef.foursquare.responses.UserMayorshipsResponse;
 
 /**
  * @author Willum
  *
  */
 @RunWith(Parameterized.class)
-public class MayorshipsTest extends BaseTest<UsersMayorshipsResponse> {
+public class MayorshipsTest extends BaseTest<UserMayorshipsResponse> {
 
 	@Override
 	public String getFileName()
@@ -43,16 +43,16 @@ public class MayorshipsTest extends BaseTest<UsersMayorshipsResponse> {
 	
 	public static DefinedType getEndpoint()
 	{
-		return new Results<UsersMayorshipsResponse>(){};
+		return new Results<UserMayorshipsResponse>(){};
 	}
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsParser<UsersMayorshipsResponse>> params = new ArrayList<ResultsParser<UsersMayorshipsResponse>>();  
+		List<ResultsParser<UserMayorshipsResponse>> params = new ArrayList<ResultsParser<UserMayorshipsResponse>>();  
         
-		GsonResultsParser<UsersMayorshipsResponse> gLoader = new GsonResultsParser<UsersMayorshipsResponse>(getEndpoint());
+		GsonResultsParser<UserMayorshipsResponse> gLoader = new GsonResultsParser<UserMayorshipsResponse>(getEndpoint());
 		params.add(gLoader);
-		JacksonResultsParser<UsersMayorshipsResponse> jLoader = new JacksonResultsParser<UsersMayorshipsResponse>(getEndpoint());
+		JacksonResultsParser<UserMayorshipsResponse> jLoader = new JacksonResultsParser<UserMayorshipsResponse>(getEndpoint());
 		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
@@ -62,12 +62,12 @@ public class MayorshipsTest extends BaseTest<UsersMayorshipsResponse> {
 		});
 	}
 	
-	public MayorshipsTest(ResultsParser<UsersMayorshipsResponse> loader)
+	public MayorshipsTest(ResultsParser<UserMayorshipsResponse> loader)
 	{
 		this.loader = loader;
 	}
 	
-	private ResultsParser<UsersMayorshipsResponse> loader = null;
+	private ResultsParser<UserMayorshipsResponse> loader = null;
 	
 	/**
 	 * @throws java.lang.Exception
@@ -85,7 +85,7 @@ public class MayorshipsTest extends BaseTest<UsersMayorshipsResponse> {
 	@Test
 	public void testItems() {
 		
-		Results<UsersMayorshipsResponse> results = getResults();
+		Results<UserMayorshipsResponse> results = getResults();
 		
 		Items<VenueWrapper> items = results.getResponse().getMayorships();
 		
