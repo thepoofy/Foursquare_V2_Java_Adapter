@@ -14,6 +14,7 @@ import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.responses.GetResponseBase;
 import com.williamvanderhoef.foursquare.responses.Responses;
+import com.williamvanderhoef.foursquare.responses.ResultsTypes;
 import com.williamvanderhoef.foursquare.responses.UserResponse;
 import com.williamvanderhoef.foursquare.responses.UsersBadgesResponse;
 
@@ -26,18 +27,17 @@ public class GsonMultiResultsParserTest extends BaseTest<Responses<Results<UserR
 
 	public static class CustomMultiResponse implements DefinedType{
 
-		
-		
 		@Override
 		public Type defineType() {
-			return new TypeToken<Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>>() {}.getType();
+			return new TypeToken<Results<Responses<ResultsTypes.UserResults, ResultsTypes.UsersBadgesResults>>>() {}.getType();
 		}
 		
 	}
 	
 	public static DefinedType getTypeDefinition()
 	{
-		Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>> results = new Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>(){};
+		Results<Responses<ResultsTypes.UserResults, ResultsTypes.UsersBadgesResults>> results  = new Results<Responses<ResultsTypes.UserResults, ResultsTypes.UsersBadgesResults>>();
+	// 	Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>> results = new Results<Responses<Results<UserResponse>, Results<UsersBadgesResponse>>>(){};
 		
 		
 		return results;
