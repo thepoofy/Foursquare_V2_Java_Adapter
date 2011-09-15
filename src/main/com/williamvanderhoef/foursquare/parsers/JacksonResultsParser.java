@@ -1,9 +1,13 @@
 package com.williamvanderhoef.foursquare.parsers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.Version;
@@ -22,6 +26,7 @@ import com.williamvanderhoef.foursquare.adapters.DefinedType;
 import com.williamvanderhoef.foursquare.model.notification.Notification;
 import com.williamvanderhoef.foursquare.model.notification.Notifications;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
+import com.williamvanderhoef.foursquare.responses.Responses;
 
 
 public class JacksonResultsParser<T> implements ResultsParser<T> {
@@ -61,18 +66,20 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 	
 	private Module createNotificationModule()
 	{
-		NotificationDeserializer deserializer = new NotificationDeserializer();
+		NotificationDeserializer notificationDeserializer = new NotificationDeserializer();
+		ResponsesDeserializer resDes= new ResponsesDeserializer(); 
 		
 		//specify a unique class attribute and the class that it is unique for
 		for(Notifications.NotificationType type: Notifications.NotificationType.values())
 		{
-			deserializer.registerType(type.name(),type.getTypeOf());
+			notificationDeserializer.registerType(type.name(),type.getTypeOf());
 		}
 		
 		SimpleModule module = new SimpleModule(
 				"PolymorphicNotificationDeserializerModule", new Version(1, 0, 0, null));
-		module.addDeserializer(Notifications.class, deserializer);
-
+		module.addDeserializer(Notifications.class, notificationDeserializer);
+		module.addDeserializer(Responses.class, resDes);
+		
 		return module;  
 	}
 	
@@ -109,6 +116,40 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 				notifications.setItem(n);
 				
 				return notifications;
+			}
+			
+			return null;
+		}
+	}
+	
+	class ResponsesDeserializer extends StdDeserializer<Responses>  
+	{  
+		ResponsesDeserializer() {
+			super(Responses.class);
+		}
+	  
+		@Override
+		public Responses deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException 
+		{
+			ObjectMapper mapper = (ObjectMapper) jp.getCodec();
+			ObjectNode fsqObject = (ObjectNode) mapper.readTree(jp);
+			
+			if(fsqObject.has("responses") 
+					&& fsqObject.get("responses").isArray())
+			{
+				Iterator<JsonNode> responses = fsqObject.get("responses").getElements();
+				
+				List<String> res = new ArrayList<String>();
+				
+				while(responses.hasNext())
+				{
+					res.add(responses.next().toString());
+				}
+				
+				Responses myResponses = new Responses();
+				myResponses.setResponses(res);
+				
+				return myResponses;
 			}
 			
 			return null;

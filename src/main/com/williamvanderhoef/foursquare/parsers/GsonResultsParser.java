@@ -2,12 +2,15 @@ package com.williamvanderhoef.foursquare.parsers;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.FieldNamingStrategy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -17,6 +20,7 @@ import com.williamvanderhoef.foursquare.adapters.DefinedType;
 import com.williamvanderhoef.foursquare.model.notification.Notification;
 import com.williamvanderhoef.foursquare.model.notification.Notifications;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
+import com.williamvanderhoef.foursquare.responses.Responses;
 
 
 public class GsonResultsParser<T> implements ResultsParser<T> {
@@ -35,6 +39,7 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 		g = new GsonBuilder()
 			.setFieldNamingStrategy(new FoursquareFieldNamingStrategy())
 			.registerTypeHierarchyAdapter(Notifications.class, buildDeserializer())
+			.registerTypeHierarchyAdapter(Responses.class, new FoursquareResponsesDeserializer())
 			.create();
 	}
 	
@@ -111,6 +116,41 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 				notifications.setItem(n);
 				
 				return notifications;
+			}
+			
+			return null;
+		}
+		
+	}
+	
+	class FoursquareResponsesDeserializer implements JsonDeserializer<Responses>
+	{
+		/*
+		 * (non-Javadoc)
+		 * @see com.google.gson.JsonDeserializer#deserialize(com.google.gson.JsonElement, java.lang.reflect.Type, com.google.gson.JsonDeserializationContext)
+		 */
+		@Override
+		public Responses deserialize(JsonElement json, Type typeOf,
+				JsonDeserializationContext context) throws JsonParseException 
+		{
+			JsonObject fsqObject = json.getAsJsonObject();
+			
+			if(fsqObject.has("responses") 
+					&& fsqObject.get("responses").getAsJsonArray() != null)
+			{
+				JsonArray responses = fsqObject.get("responses").getAsJsonArray();
+				
+				List<String> res = new ArrayList<String>();
+				
+				for(JsonElement ele : responses)
+				{
+					res.add(ele.toString());
+				}
+				
+				Responses myResponses = new Responses();
+				myResponses.setResponses(res);
+				
+				return myResponses;
 			}
 			
 			return null;
