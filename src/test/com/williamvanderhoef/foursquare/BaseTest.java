@@ -68,6 +68,7 @@ public abstract class BaseTest<T>{
 		setFileContents(sb.toString());
 	}
 	
+	
 	@Test
 	public void testResults()
 	{
