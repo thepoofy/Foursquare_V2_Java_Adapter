@@ -1,6 +1,5 @@
 package com.williamvanderhoef.foursquare.model.subtypes;
 
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -57,15 +56,13 @@ public class Results<ResponseType> implements DefinedType
 	}
 	
 
-	/**
-	 * 
+	/*
+	 * (non-Javadoc)
+	 * @see com.williamvanderhoef.foursquare.adapters.DefinedType#defineType()
 	 */
+	@Override
 	public Type defineType()
 	{
-		Type type = this.getClass().getGenericSuperclass();
-		ParameterizedType paramType = (ParameterizedType)type;
-		
-		return paramType;
-//		return (Class<ResponseType>) paramType.getActualTypeArguments()[0];
+		return this.getClass().getGenericSuperclass();
 	}
 }
