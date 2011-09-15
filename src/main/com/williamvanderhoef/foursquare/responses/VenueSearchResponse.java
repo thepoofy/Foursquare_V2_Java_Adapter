@@ -3,21 +3,20 @@ package com.williamvanderhoef.foursquare.responses;
 import java.util.List;
 
 import com.williamvanderhoef.foursquare.model.Venue;
-import com.williamvanderhoef.foursquare.model.subtypes.Group;
 
 
 public class VenueSearchResponse
 {
 	
-	private List<Group<Venue>> groups;
+	private List<Venue> venues;
 
-	public List<Group<Venue>> getGroups()
-	{
-		return groups;
+	public List<Venue> getVenues() {
+		return venues;
 	}
 
-	public void setGroups(List<Group<Venue>> groups)
-	{
-		this.groups = groups;
+	public void setVenues(List<Venue> venues) {
+		this.venues = venues;
 	}
+
+	
 }
