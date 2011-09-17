@@ -1,6 +1,7 @@
 package com.williamvanderhoef.foursquare.model;
 
 import com.williamvanderhoef.foursquare.model.subtypes.Count;
+import com.williamvanderhoef.foursquare.model.subtypes.Items;
 import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 
 /**
@@ -17,91 +18,242 @@ public class FoursquareList extends Unique{
 	private String name;
 	private String description;
 	private User user;
+	private Boolean following;
+	private Items<User> followers;
 	private Boolean editable;
-	private Boolean _public;		//FIXME will not work for Gson
 	private Boolean collaborative;
-	private String url;
-	private Count followers;
-	private Count listItems;
+	private Items<User> collaborators;
+	private String canonicalUrl;
 	
 	private Photo photo;
-	private Long createdAt;
-	private Long updatedAt;
+	private Integer doneCount;
+	private Integer venueCount; 
+	private Integer visitedCount;
 	
-	
-	
-	public String getName() {
+	private Items<FoursquareListItem> listItems;
+
+	/**
+	 * @return the name
+	 */
+	public String getName()
+	{
 		return name;
 	}
-	public void setName(String name) {
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name)
+	{
 		this.name = name;
 	}
-	public String getDescription() {
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription()
+	{
 		return description;
 	}
-	public void setDescription(String description) {
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description)
+	{
 		this.description = description;
 	}
-	public User getUser() {
+
+	/**
+	 * @return the user
+	 */
+	public User getUser()
+	{
 		return user;
 	}
-	public void setUser(User user) {
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user)
+	{
 		this.user = user;
 	}
-	public Boolean getEditable() {
-		return editable;
+
+	/**
+	 * @return the following
+	 */
+	public Boolean getFollowing()
+	{
+		return following;
 	}
-	public void setEditable(Boolean editable) {
-		this.editable = editable;
+
+	/**
+	 * @param following the following to set
+	 */
+	public void setFollowing(Boolean following)
+	{
+		this.following = following;
 	}
-	public Boolean getPublic() {
-		return _public;
-	}
-	public void setPublic(Boolean _public) {
-		this._public = _public;
-	}
-	public Boolean getCollaborative() {
-		return collaborative;
-	}
-	public void setCollaborative(Boolean collaborative) {
-		this.collaborative = collaborative;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public void setUrl(String url) {
-		this.url = url;
-	}
-	public Count getFollowers() {
+
+	/**
+	 * @return the followers
+	 */
+	public Items<User> getFollowers()
+	{
 		return followers;
 	}
-	public void setFollowers(Count followers) {
+
+	/**
+	 * @param followers the followers to set
+	 */
+	public void setFollowers(Items<User> followers)
+	{
 		this.followers = followers;
 	}
-	public Count getListItems() {
-		return listItems;
+
+	/**
+	 * @return the editable
+	 */
+	public Boolean getEditable()
+	{
+		return editable;
 	}
-	public void setListItems(Count listItems) {
-		this.listItems = listItems;
+
+	/**
+	 * @param editable the editable to set
+	 */
+	public void setEditable(Boolean editable)
+	{
+		this.editable = editable;
 	}
-	public Photo getPhoto() {
+
+	/**
+	 * @return the collaborative
+	 */
+	public Boolean getCollaborative()
+	{
+		return collaborative;
+	}
+
+	/**
+	 * @param collaborative the collaborative to set
+	 */
+	public void setCollaborative(Boolean collaborative)
+	{
+		this.collaborative = collaborative;
+	}
+
+	/**
+	 * @return the collaborators
+	 */
+	public Items<User> getCollaborators()
+	{
+		return collaborators;
+	}
+
+	/**
+	 * @param collaborators the collaborators to set
+	 */
+	public void setCollaborators(Items<User> collaborators)
+	{
+		this.collaborators = collaborators;
+	}
+
+	/**
+	 * @return the canonicalUrl
+	 */
+	public String getCanonicalUrl()
+	{
+		return canonicalUrl;
+	}
+
+	/**
+	 * @param canonicalUrl the canonicalUrl to set
+	 */
+	public void setCanonicalUrl(String canonicalUrl)
+	{
+		this.canonicalUrl = canonicalUrl;
+	}
+
+	/**
+	 * @return the photo
+	 */
+	public Photo getPhoto()
+	{
 		return photo;
 	}
-	public void setPhoto(Photo photo) {
+
+	/**
+	 * @param photo the photo to set
+	 */
+	public void setPhoto(Photo photo)
+	{
 		this.photo = photo;
 	}
-	public Long getCreatedAt() {
-		return createdAt;
+
+	/**
+	 * @return the doneCount
+	 */
+	public Integer getDoneCount()
+	{
+		return doneCount;
 	}
-	public void setCreatedAt(Long createdAt) {
-		this.createdAt = createdAt;
+
+	/**
+	 * @param doneCount the doneCount to set
+	 */
+	public void setDoneCount(Integer doneCount)
+	{
+		this.doneCount = doneCount;
 	}
-	public Long getUpdatedAt() {
-		return updatedAt;
+
+	/**
+	 * @return the venueCount
+	 */
+	public Integer getVenueCount()
+	{
+		return venueCount;
 	}
-	public void setUpdatedAt(Long updatedAt) {
-		this.updatedAt = updatedAt;
+
+	/**
+	 * @param venueCount the venueCount to set
+	 */
+	public void setVenueCount(Integer venueCount)
+	{
+		this.venueCount = venueCount;
 	}
-	
-	
+
+	/**
+	 * @return the visitedCount
+	 */
+	public Integer getVisitedCount()
+	{
+		return visitedCount;
+	}
+
+	/**
+	 * @param visitedCount the visitedCount to set
+	 */
+	public void setVisitedCount(Integer visitedCount)
+	{
+		this.visitedCount = visitedCount;
+	}
+
+	/**
+	 * @return the listItems
+	 */
+	public Items<FoursquareListItem> getListItems()
+	{
+		return listItems;
+	}
+
+	/**
+	 * @param listItems the listItems to set
+	 */
+	public void setListItems(Items<FoursquareListItem> listItems)
+	{
+		this.listItems = listItems;
+	}
+		
 }
