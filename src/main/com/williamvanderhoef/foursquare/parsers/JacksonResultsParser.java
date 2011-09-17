@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.DeserializationConfig.Feature;
 import org.codehaus.jackson.map.DeserializationContext;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.Module;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.deser.StdDeserializer;
@@ -23,6 +25,7 @@ import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jackson.type.JavaType;
 
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
+import com.williamvanderhoef.foursquare.adapters.JsonSyntaxException;
 import com.williamvanderhoef.foursquare.model.notification.Notification;
 import com.williamvanderhoef.foursquare.model.notification.Notifications;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
@@ -45,7 +48,7 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 		this.isStrictValidation = isStrict;
 	}
 	
-	public Results<T> parse(String fileContents) throws Exception
+	public Results<T> parse(String fileContents) throws JsonSyntaxException
 	{
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -59,7 +62,22 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 		
 		JavaType jt = tf.constructType(adapter.defineType());
 
-		return mapper.readValue(fileContents, jt);
+		try
+		{
+			return mapper.readValue(fileContents, jt);	
+		}
+		catch(JsonMappingException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
+		catch(JsonParseException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
+		catch(IOException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
 
 	}
 

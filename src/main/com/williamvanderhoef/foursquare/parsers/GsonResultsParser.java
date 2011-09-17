@@ -17,6 +17,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
+import com.williamvanderhoef.foursquare.adapters.JsonSyntaxException;
 import com.williamvanderhoef.foursquare.model.notification.Notification;
 import com.williamvanderhoef.foursquare.model.notification.Notifications;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
@@ -43,9 +44,16 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 			.create();
 	}
 	
-	public Results<T> parse(String fileContents) throws Exception
+	public Results<T> parse(String fileContents) throws JsonSyntaxException
 	{
-		return g.fromJson(fileContents, adapter.defineType());
+		try{
+			return g.fromJson(fileContents, adapter.defineType());	
+		}
+		catch(com.google.gson.JsonSyntaxException jse)
+		{
+			throw new JsonSyntaxException(jse);
+		}
+		
 	}
 
 	private class FoursquareFieldNamingStrategy implements FieldNamingStrategy{
