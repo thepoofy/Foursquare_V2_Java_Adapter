@@ -26,34 +26,34 @@ import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
-import com.williamvanderhoef.foursquare.responses.UserListsResponse;
+import com.williamvanderhoef.foursquare.responses.FoursquareListDetailResponse;
+import com.williamvanderhoef.foursquare.responses.FoursquareListDetailResponse;
 
 /**
  * @author Willum
  *
  */
 @RunWith(Parameterized.class)
-public class ListsTest extends BaseTest<UserListsResponse> {
+public class ListDetailsTest extends BaseTest<FoursquareListDetailResponse> {
 
 	@Override
 	public String getFileName()
 	{
-//		return "src/test/v2.users.self.lists.20110828.json";
-		return "src/test/v2.users.self.lists.20110917.json";
+		return "src/test/v2.lists.4e725193d22dbd6261a1839e.ListDetails.20110917.json";
 	}
 
 	public static DefinedType getEndpoint()
 	{
-		return new Results<UserListsResponse>(){};
+		return new Results<FoursquareListDetailResponse>(){};
 	}
 
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsParser<UserListsResponse>> params = new ArrayList<ResultsParser<UserListsResponse>>();
+		List<ResultsParser<FoursquareListDetailResponse>> params = new ArrayList<ResultsParser<FoursquareListDetailResponse>>();
 
-		GsonResultsParser<UserListsResponse> gLoader = new GsonResultsParser<UserListsResponse>(getEndpoint());
+		GsonResultsParser<FoursquareListDetailResponse> gLoader = new GsonResultsParser<FoursquareListDetailResponse>(getEndpoint());
 		params.add(gLoader);
-		JacksonResultsParser<UserListsResponse> jLoader = new JacksonResultsParser<UserListsResponse>(getEndpoint());
+		JacksonResultsParser<FoursquareListDetailResponse> jLoader = new JacksonResultsParser<FoursquareListDetailResponse>(getEndpoint());
 		jLoader.setStrictValidation(true);
 		params.add(jLoader);
 
@@ -63,12 +63,12 @@ public class ListsTest extends BaseTest<UserListsResponse> {
 		});
 	}
 
-	public ListsTest(ResultsParser<UserListsResponse> loader)
+	public ListDetailsTest(ResultsParser<FoursquareListDetailResponse> loader)
 	{
 		this.loader = loader;
 	}
 
-	private ResultsParser<UserListsResponse> loader = null;
+	private ResultsParser<FoursquareListDetailResponse> loader = null;
 
 	/**
 	 * @throws java.lang.Exception
@@ -84,36 +84,20 @@ public class ListsTest extends BaseTest<UserListsResponse> {
 
 
 	@Test
-	public void testGroups() {
+	public void testList() {
 
-		Results<UserListsResponse> results = getResults();
+		Results<FoursquareListDetailResponse> results = getResults();
 
-		Groups<FoursquareList> groups = results.getResponse().getLists();
+		FoursquareList list = results.getResponse().getList();
 
-		Assert.assertNotNull(groups);
+		Assert.assertNotNull(list);
 
-		Assert.assertNotNull(groups.getGroups());
+		Assert.assertNotNull(list.getName());
 
-		Assert.assertTrue(groups.getGroups().size() >= 4);
+		Assert.assertNotNull(list.getListItems());
+		
+		Assert.assertEquals(Integer.valueOf(6), list.getListItems().getCount());
 	}
 
-	@Test
-	public void testValues() {
-
-		List<Group<FoursquareList>> lists = getResults().getResponse().getLists().getGroups();
-
-		Group<FoursquareList> list = lists.get(0);
-
-		Assert.assertEquals("todos", list.getType());
-		Assert.assertEquals("My To-Do List", list.getName());
-		Assert.assertEquals(Integer.valueOf(1), list.getCount());
-
-		Assert.assertNotNull(list.getItems());
-
-		List<FoursquareList> myTodoList =list.getItems();
-
-		Assert.assertEquals(1, myTodoList.size());
-
-
-	}
+	
 }

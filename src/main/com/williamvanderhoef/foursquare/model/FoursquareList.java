@@ -1,6 +1,7 @@
 package com.williamvanderhoef.foursquare.model;
 
-import com.williamvanderhoef.foursquare.model.subtypes.Count;
+import com.williamvanderhoef.foursquare.model.subtypes.Category;
+import com.williamvanderhoef.foursquare.model.subtypes.CategoryCount;
 import com.williamvanderhoef.foursquare.model.subtypes.Items;
 import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 
@@ -22,13 +23,19 @@ public class FoursquareList extends Unique{
 	private Items<User> followers;
 	private Boolean editable;
 	private Boolean collaborative;
+	private Boolean _public;
 	private Items<User> collaborators;
+	private String url;
 	private String canonicalUrl;
 	
 	private Photo photo;
 	private Integer doneCount;
 	private Integer venueCount; 
 	private Integer visitedCount;
+	private Items<CategoryCount> categories;
+	
+	private Integer createdAt;
+	private Integer updatedAt;
 	
 	private Items<FoursquareListItem> listItems;
 
@@ -255,5 +262,65 @@ public class FoursquareList extends Unique{
 	{
 		this.listItems = listItems;
 	}
+
+	public Boolean getPublic() {
+		return _public;
+	}
+
+	public void setPublic(Boolean _public) {
+		this._public = _public;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	/**
+	 * @return the createdAt
+	 */
+	public Integer getCreatedAt() {
+		return createdAt;
+	}
+
+	/**
+	 * @param createdAt the createdAt to set
+	 */
+	public void setCreatedAt(Integer createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	/**
+	 * @return the updatedAt
+	 */
+	public Integer getUpdatedAt() {
+		return updatedAt;
+	}
+
+	/**
+	 * @param updatedAt the updatedAt to set
+	 */
+	public void setUpdatedAt(Integer updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+	/**
+	 * @return the categories
+	 */
+	public Items<CategoryCount> getCategories() {
+		return categories;
+	}
+
+	/**
+	 * @param categories the categories to set
+	 */
+	public void setCategories(Items<CategoryCount> categories) {
+		this.categories = categories;
+	}
+	
+	
 		
 }

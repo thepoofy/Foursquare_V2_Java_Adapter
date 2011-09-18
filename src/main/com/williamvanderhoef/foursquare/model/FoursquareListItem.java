@@ -1,7 +1,6 @@
 package com.williamvanderhoef.foursquare.model;
 
-import java.util.List;
-
+import com.williamvanderhoef.foursquare.model.subtypes.Items;
 import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 
 public class FoursquareListItem extends Unique
@@ -15,7 +14,7 @@ public class FoursquareListItem extends Unique
 	private Boolean todo;
 	private Boolean done;
 	private Integer visitedCount;
-	private List<FoursquareList> listed;
+	private Items<FoursquareList> listed;
 	/**
 	 * @return the user
 	 */
@@ -145,14 +144,14 @@ public class FoursquareListItem extends Unique
 	/**
 	 * @return the listed
 	 */
-	public List<FoursquareList> getListed()
+	public Items<FoursquareList> getListed()
 	{
 		return listed;
 	}
 	/**
 	 * @param listed the listed to set
 	 */
-	public void setListed(List<FoursquareList> listed)
+	public void setListed(Items<FoursquareList> listed)
 	{
 		this.listed = listed;
 	}
