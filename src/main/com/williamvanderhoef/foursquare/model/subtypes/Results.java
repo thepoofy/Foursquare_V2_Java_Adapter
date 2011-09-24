@@ -35,6 +35,19 @@ public class Results<ResponseType> implements DefinedType
 		this.meta = meta;
 	}
 	/**
+	 * @return
+	 */
+	public List<Notifications> getNotifications() {
+		return notifications;
+	}
+	/**
+	 * @param notifications
+	 */
+	public void setNotifications(List<Notifications> notifications) {
+		this.notifications = notifications;
+	}
+	
+	/**
 	 * @return the response
 	 */
 	public ResponseType getResponse()
@@ -47,12 +60,6 @@ public class Results<ResponseType> implements DefinedType
 	public void setResponse(ResponseType response)
 	{
 		this.response = response;
-	}
-	public List<Notifications> getNotifications() {
-		return notifications;
-	}
-	public void setNotifications(List<Notifications> notifications) {
-		this.notifications = notifications;
 	}
 	
 

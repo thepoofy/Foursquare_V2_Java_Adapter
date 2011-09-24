@@ -3,7 +3,6 @@ package com.williamvanderhoef.foursquare.test.parsers;
 import java.lang.reflect.Type;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +18,13 @@ import com.williamvanderhoef.foursquare.responses.CheckinAddResponse;
  *
  */
 public class GsonResultsParserTest extends BaseTest<CheckinAddResponse>{
+
+	private static GsonResultsParser<CheckinAddResponse> gLoader = new GsonResultsParser<CheckinAddResponse>(getTypeDefinition());
+	
+	public GsonResultsParserTest() 
+	{
+		super(gLoader);
+	}
 
 	public static DefinedType getTypeDefinition()
 	{
@@ -43,18 +49,13 @@ public class GsonResultsParserTest extends BaseTest<CheckinAddResponse>{
 
 		Assert.assertEquals(tokenizedType, endpointType);
 	}
-	
-	@Before
+
 	@Override
-	public void setUp() throws Exception
-	{
-		super.setUp();
+	public void testEquality(Results<CheckinAddResponse> original,
+			Results<CheckinAddResponse> secondBuild) {
+		// TODO Auto-generated method stub
 		
-		GsonResultsParser<CheckinAddResponse> gLoader = new GsonResultsParser<CheckinAddResponse>(getTypeDefinition());
-		
-		Results<CheckinAddResponse> results = gLoader.parse(this.getFileContents());
-		
-		this.setResults(results);
 	}
+	
 	
 }

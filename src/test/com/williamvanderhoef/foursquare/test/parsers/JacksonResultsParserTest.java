@@ -3,7 +3,6 @@ package com.williamvanderhoef.foursquare.test.parsers;
 import java.lang.reflect.Type;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.google.gson.reflect.TypeToken;
@@ -19,6 +18,12 @@ import com.williamvanderhoef.foursquare.responses.CheckinAddResponse;
  *
  */
 public class JacksonResultsParserTest extends BaseTest<CheckinAddResponse>{
+
+	private static JacksonResultsParser<CheckinAddResponse> loader = new JacksonResultsParser<CheckinAddResponse>(getTypeDefinition());
+	
+	public JacksonResultsParserTest() {
+		super(loader);
+	}
 
 	public static DefinedType getTypeDefinition()
 	{
@@ -43,18 +48,26 @@ public class JacksonResultsParserTest extends BaseTest<CheckinAddResponse>{
 
 		Assert.assertEquals(tokenizedType, endpointType);
 	}
-	
-	@Before
+
 	@Override
-	public void setUp() throws Exception
-	{
-		super.setUp();
+	public void testEquality(Results<CheckinAddResponse> original,
+			Results<CheckinAddResponse> secondBuild) {
+
+		// TODO Auto-generated method stub
 		
-		JacksonResultsParser<CheckinAddResponse> gLoader = new JacksonResultsParser<CheckinAddResponse>(getTypeDefinition());
-		
-		Results<CheckinAddResponse> results = gLoader.parse(this.getFileContents());
-		
-		this.setResults(results);
 	}
+	
+//	@Before
+//	@Override
+//	public void setUp() throws Exception
+//	{
+//		super.setUp();
+//		
+//		
+//		
+//		Results<CheckinAddResponse> results = gLoader.fromJson(this.getFileContents());
+//		
+//		this.setResults(results);
+//	}
 	
 }

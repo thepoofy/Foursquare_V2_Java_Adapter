@@ -64,24 +64,9 @@ public class MayorshipsTest extends BaseTest<UserMayorshipsResponse> {
 	
 	public MayorshipsTest(ResultsParser<UserMayorshipsResponse> loader)
 	{
-		this.loader = loader;
+		super(loader);
 	}
-	
-	private ResultsParser<UserMayorshipsResponse> loader = null;
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	@Override
-	public void setUp() throws Exception {
-		
-		super.setUp();
-		
-		this.setResults(loader.parse(this.getFileContents()));
-	}
-	
-		
+			
 	@Test
 	public void testItems() {
 		
@@ -106,5 +91,12 @@ public class MayorshipsTest extends BaseTest<UserMayorshipsResponse> {
 		Venue item = items.getItems().get(0).getVenue();
 		
 		Assert.assertNotNull(item);
+	}
+
+	@Override
+	public void testEquality(Results<UserMayorshipsResponse> original,
+			Results<UserMayorshipsResponse> secondBuild) {
+		// TODO Auto-generated method stub
+		
 	}
 }

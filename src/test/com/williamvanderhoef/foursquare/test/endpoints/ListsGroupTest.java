@@ -11,7 +11,6 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -20,7 +19,6 @@ import org.junit.runners.Parameterized.Parameters;
 import com.williamvanderhoef.foursquare.BaseTest;
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
 import com.williamvanderhoef.foursquare.model.FoursquareList;
-import com.williamvanderhoef.foursquare.model.subtypes.Group;
 import com.williamvanderhoef.foursquare.model.subtypes.Items;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
@@ -64,21 +62,7 @@ public class ListsGroupTest extends BaseTest<UserListsGroupResponse> {
 
 	public ListsGroupTest(ResultsParser<UserListsGroupResponse> loader)
 	{
-		this.loader = loader;
-	}
-
-	private ResultsParser<UserListsGroupResponse> loader = null;
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	@Override
-	public void setUp() throws Exception {
-
-		super.setUp();
-
-		this.setResults(loader.parse(this.getFileContents()));
+		super(loader);
 	}
 
 
@@ -117,4 +101,11 @@ public class ListsGroupTest extends BaseTest<UserListsGroupResponse> {
 //
 //
 //	}
+
+	@Override
+	public void testEquality(Results<UserListsGroupResponse> original,
+			Results<UserListsGroupResponse> secondBuild) {
+		// TODO Auto-generated method stub
+		
+	}
 }

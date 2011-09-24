@@ -26,6 +26,7 @@ import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
 import com.williamvanderhoef.foursquare.responses.CheckinAddResponse;
+import com.williamvanderhoef.foursquare.responses.UserCheckinsResponse;
 
 /**
  * @author Willum
@@ -65,22 +66,9 @@ public class CheckinAddTest extends BaseTest<CheckinAddResponse> {
 	
 	public CheckinAddTest(ResultsParser<CheckinAddResponse> loader)
 	{
-		this.loader = loader;
+		super(loader);
 	}
 	
-	private ResultsParser<CheckinAddResponse> loader = null;
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	@Override
-	public void setUp() throws Exception {
-		
-		super.setUp();
-		
-		this.setResults(loader.parse(this.getFileContents()));
-	}
 	
 	@Test
 	public void testNotification()
@@ -118,6 +106,14 @@ public class CheckinAddTest extends BaseTest<CheckinAddResponse> {
 		
 		Assert.assertNotNull(checkin);
 	
+		
+	}
+
+
+	@Override
+	public void testEquality(Results<CheckinAddResponse> original,
+			Results<CheckinAddResponse> secondBuild) {
+		// TODO Auto-generated method stub
 		
 	}
 }

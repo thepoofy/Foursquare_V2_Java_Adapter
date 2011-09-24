@@ -6,6 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.williamvanderhoef.foursquare.test.endpoints.CheckinAddTest;
 import com.williamvanderhoef.foursquare.test.endpoints.CheckinsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.ListsGroupTest;
 import com.williamvanderhoef.foursquare.test.endpoints.ListsTest;
 import com.williamvanderhoef.foursquare.test.endpoints.MayorshipsTest;
 import com.williamvanderhoef.foursquare.test.endpoints.MultiResultsParserTest;
@@ -19,10 +20,12 @@ import com.williamvanderhoef.foursquare.test.parsers.JacksonResultsParserTest;
 	CheckinAddTest.class,
 	CheckinsTest.class,
 	ListsTest.class,
+	ListsGroupTest.class,
 	MayorshipsTest.class,
+	MultiResultsParserTest.class,
 	UserTest.class,
 	VenueHistoryTest.class,
-	MultiResultsParserTest.class,
+	
 	
 	GsonResultsParserTest.class,
 	JacksonResultsParserTest.class

@@ -11,7 +11,6 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -20,13 +19,10 @@ import org.junit.runners.Parameterized.Parameters;
 import com.williamvanderhoef.foursquare.BaseTest;
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
 import com.williamvanderhoef.foursquare.model.FoursquareList;
-import com.williamvanderhoef.foursquare.model.subtypes.Group;
-import com.williamvanderhoef.foursquare.model.subtypes.Groups;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
-import com.williamvanderhoef.foursquare.responses.FoursquareListDetailResponse;
 import com.williamvanderhoef.foursquare.responses.FoursquareListDetailResponse;
 
 /**
@@ -63,23 +59,10 @@ public class ListDetailsTest extends BaseTest<FoursquareListDetailResponse> {
 		});
 	}
 
+	
 	public ListDetailsTest(ResultsParser<FoursquareListDetailResponse> loader)
 	{
-		this.loader = loader;
-	}
-
-	private ResultsParser<FoursquareListDetailResponse> loader = null;
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	@Override
-	public void setUp() throws Exception {
-
-		super.setUp();
-
-		this.setResults(loader.parse(this.getFileContents()));
+		super(loader);
 	}
 
 
@@ -97,6 +80,13 @@ public class ListDetailsTest extends BaseTest<FoursquareListDetailResponse> {
 		Assert.assertNotNull(list.getListItems());
 		
 		Assert.assertEquals(Integer.valueOf(6), list.getListItems().getCount());
+	}
+
+	@Override
+	public void testEquality(Results<FoursquareListDetailResponse> original,
+			Results<FoursquareListDetailResponse> secondBuild) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

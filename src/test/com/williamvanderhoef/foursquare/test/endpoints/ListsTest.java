@@ -11,7 +11,6 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -38,8 +37,7 @@ public class ListsTest extends BaseTest<UserListsResponse> {
 	@Override
 	public String getFileName()
 	{
-//		return "src/test/v2.users.self.lists.20110828.json";
-		return "src/test/v2.users.self.lists.20110917.json";
+		return "src/test/v2.users.self.lists.20110901.json";
 	}
 
 	public static DefinedType getEndpoint()
@@ -65,21 +63,7 @@ public class ListsTest extends BaseTest<UserListsResponse> {
 
 	public ListsTest(ResultsParser<UserListsResponse> loader)
 	{
-		this.loader = loader;
-	}
-
-	private ResultsParser<UserListsResponse> loader = null;
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	@Override
-	public void setUp() throws Exception {
-
-		super.setUp();
-
-		this.setResults(loader.parse(this.getFileContents()));
+		super(loader);
 	}
 
 
@@ -115,5 +99,12 @@ public class ListsTest extends BaseTest<UserListsResponse> {
 		Assert.assertEquals(1, myTodoList.size());
 
 
+	}
+
+	@Override
+	public void testEquality(Results<UserListsResponse> original,
+			Results<UserListsResponse> secondBuild) {
+		// TODO Auto-generated method stub
+		
 	}
 }

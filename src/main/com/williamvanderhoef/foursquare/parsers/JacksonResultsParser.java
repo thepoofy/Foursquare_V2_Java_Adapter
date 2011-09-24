@@ -1,12 +1,14 @@
 package com.williamvanderhoef.foursquare.parsers;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
@@ -18,6 +20,8 @@ import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.Module;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.codehaus.jackson.map.deser.StdDeserializer;
 import org.codehaus.jackson.map.module.SimpleModule;
 import org.codehaus.jackson.map.type.TypeFactory;
@@ -38,26 +42,65 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 	
 	private boolean isStrictValidation = false;
 	
+	private ObjectMapper mapper = new ObjectMapper();
+	
 	public JacksonResultsParser(DefinedType adapter) {
 		
 		this.adapter = adapter;
+		
+		DeserializationConfig cfg = mapper.getDeserializationConfig();
+		cfg.set(Feature.FAIL_ON_UNKNOWN_PROPERTIES, isStrictValidation);
+		mapper.setDeserializationConfig(cfg);
+
+		SerializationConfig config = mapper.getSerializationConfig();
+		config.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
+		
+		mapper.registerModule(createNotificationModule());
+
 	}
 	
+	/**
+	 * Used for testing json and forcing it to throw an exception when an unknown element is discovered while parsing.
+	 * 
+	 * @param isStrict
+	 */
 	public void setStrictValidation(boolean isStrict)
 	{
 		this.isStrictValidation = isStrict;
 	}
 	
-	public Results<T> parse(String fileContents) throws JsonSyntaxException
+	
+	@Override
+	public T simpleFromJson(String json, Type t)throws JsonSyntaxException{
+		try
+		{
+			TypeFactory tf = TypeFactory.defaultInstance();
+			
+			JavaType jt = tf.constructType(t);
+			
+			return mapper.readValue(json, jt );	
+		}
+		catch(JsonMappingException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
+		catch(JsonParseException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
+		catch(IOException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
+	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.williamvanderhoef.foursquare.parsers.ResultsParser#fromJson(java.lang.String)
+	 */
+	public Results<T> fromJson(String fileContents) throws JsonSyntaxException
 	{
-		ObjectMapper mapper = new ObjectMapper();
-
-		DeserializationConfig cfg = mapper.getDeserializationConfig();
-		cfg.set(Feature.FAIL_ON_UNKNOWN_PROPERTIES, isStrictValidation);
-		mapper.setDeserializationConfig(cfg);
-
-		mapper.registerModule(createNotificationModule());
-
 		TypeFactory tf = TypeFactory.defaultInstance();
 		
 		JavaType jt = tf.constructType(adapter.defineType());
@@ -78,9 +121,28 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 		{
 			throw new JsonSyntaxException(e);
 		}
-
 	}
 
+	public String toJson(Object object) throws JsonSyntaxException
+	{
+		
+		try
+		{
+			return mapper.writeValueAsString(object);	
+		}
+		catch(JsonGenerationException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
+		catch(JsonMappingException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
+		catch(IOException e)
+		{
+			throw new JsonSyntaxException(e);
+		}
+	}
 	
 	private Module createNotificationModule()
 	{

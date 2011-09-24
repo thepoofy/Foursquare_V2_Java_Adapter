@@ -1,6 +1,5 @@
 package com.williamvanderhoef.foursquare.model;
 
-import com.williamvanderhoef.foursquare.model.subtypes.Category;
 import com.williamvanderhoef.foursquare.model.subtypes.CategoryCount;
 import com.williamvanderhoef.foursquare.model.subtypes.Items;
 import com.williamvanderhoef.foursquare.model.subtypes.Unique;

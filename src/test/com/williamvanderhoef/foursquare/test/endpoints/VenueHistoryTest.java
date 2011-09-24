@@ -11,7 +11,6 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -64,21 +63,7 @@ public class VenueHistoryTest extends BaseTest<UserVenueHistoryResponse> {
 	
 	public VenueHistoryTest(ResultsParser<UserVenueHistoryResponse> loader)
 	{
-		this.loader = loader;
-	}
-	
-	private ResultsParser<UserVenueHistoryResponse> loader = null;
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	@Override
-	public void setUp() throws Exception {
-		
-		super.setUp();
-		
-		this.setResults(loader.parse(this.getFileContents()));
+		super(loader);
 	}
 	
 		
@@ -105,5 +90,12 @@ public class VenueHistoryTest extends BaseTest<UserVenueHistoryResponse> {
 		VenueHistory ck = checkins.getItems().get(0);
 		
 		Assert.assertNotNull(ck);
+	}
+
+	@Override
+	public void testEquality(Results<UserVenueHistoryResponse> original,
+			Results<UserVenueHistoryResponse> secondBuild) {
+		// TODO Auto-generated method stub
+		
 	}
 }

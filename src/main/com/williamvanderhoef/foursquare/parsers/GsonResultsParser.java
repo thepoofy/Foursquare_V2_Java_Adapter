@@ -23,7 +23,12 @@ import com.williamvanderhoef.foursquare.model.notification.Notifications;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.responses.Responses;
 
-
+/**
+ * 
+ * @author Willum
+ *
+ * @param <T>
+ */
 public class GsonResultsParser<T> implements ResultsParser<T> {
 
 	private DefinedType adapter;
@@ -44,7 +49,11 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 			.create();
 	}
 	
-	public Results<T> parse(String fileContents) throws JsonSyntaxException
+	/*
+	 * (non-Javadoc)
+	 * @see com.williamvanderhoef.foursquare.parsers.ResultsParser#fromJson(java.lang.String)
+	 */
+	public Results<T> fromJson(String fileContents) throws JsonSyntaxException
 	{
 		try{
 			return g.fromJson(fileContents, adapter.defineType());	
@@ -53,7 +62,38 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 		{
 			throw new JsonSyntaxException(jse);
 		}
-		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.williamvanderhoef.foursquare.parsers.ResultsParser#simpleFromJson(java.lang.String, java.lang.reflect.Type)
+	 */
+	@Override
+	public T simpleFromJson(String json, Type t) throws JsonSyntaxException {
+
+		try{
+			return g.fromJson(json, t);	
+		}
+		catch(com.google.gson.JsonSyntaxException jse)
+		{
+			throw new JsonSyntaxException(jse);
+		}
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.williamvanderhoef.foursquare.parsers.ResultsParser#toJson(com.williamvanderhoef.foursquare.model.subtypes.Results)
+	 */
+	public String toJson(Object results) throws JsonSyntaxException
+	{
+		try
+		{
+			return g.toJson(results);
+		}
+		catch(com.google.gson.JsonSyntaxException jse)
+		{
+			throw new JsonSyntaxException(jse);
+		}
 	}
 
 	private class FoursquareFieldNamingStrategy implements FieldNamingStrategy{
@@ -85,7 +125,7 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 		return deserializer;
 	}
 	
-	class FoursquareObjectDeserializer implements JsonDeserializer<Notifications>
+	private class FoursquareObjectDeserializer implements JsonDeserializer<Notifications>
 	{
 		private Map<String, Class<? extends Notification>> registry = new HashMap<String, Class<? extends Notification>>();
 
@@ -131,7 +171,7 @@ public class GsonResultsParser<T> implements ResultsParser<T> {
 		
 	}
 	
-	class FoursquareResponsesDeserializer implements JsonDeserializer<Responses>
+	private class FoursquareResponsesDeserializer implements JsonDeserializer<Responses>
 	{
 		/*
 		 * (non-Javadoc)

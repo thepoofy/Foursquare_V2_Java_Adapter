@@ -40,4 +40,150 @@ public class Update {
 	
 	
 	private ImageDefinition icon;
+
+
+	/**
+	 * @return the ids
+	 */
+	public List<String> getIds() {
+		return ids;
+	}
+
+
+	/**
+	 * @param ids the ids to set
+	 */
+	public void setIds(List<String> ids) {
+		this.ids = ids;
+	}
+
+
+	/**
+	 * @return the createdAt
+	 */
+	public Long getCreatedAt() {
+		return createdAt;
+	}
+
+
+	/**
+	 * @param createdAt the createdAt to set
+	 */
+	public void setCreatedAt(Long createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
+	/**
+	 * @return the unread
+	 */
+	public Boolean getUnread() {
+		return unread;
+	}
+
+
+	/**
+	 * @param unread the unread to set
+	 */
+	public void setUnread(Boolean unread) {
+		this.unread = unread;
+	}
+
+
+	/**
+	 * @return the target
+	 */
+	public Object getTarget() {
+		return target;
+	}
+
+
+	/**
+	 * @param target the target to set
+	 */
+	public void setTarget(Object target) {
+		this.target = target;
+	}
+
+
+	/**
+	 * @return the text
+	 */
+	public String getText() {
+		return text;
+	}
+
+
+	/**
+	 * @param text the text to set
+	 */
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	/**
+	 * @return the entities
+	 */
+	public List<Object> getEntities() {
+		return entities;
+	}
+
+
+	/**
+	 * @param entities the entities to set
+	 */
+	public void setEntities(List<Object> entities) {
+		this.entities = entities;
+	}
+
+
+	/**
+	 * @return the image
+	 */
+	public ImageDefinition getImage() {
+		return image;
+	}
+
+
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(ImageDefinition image) {
+		this.image = image;
+	}
+
+
+	/**
+	 * @return the imageType
+	 */
+	public ImageType getImageType() {
+		return imageType;
+	}
+
+
+	/**
+	 * @param imageType the imageType to set
+	 */
+	public void setImageType(ImageType imageType) {
+		this.imageType = imageType;
+	}
+
+
+	/**
+	 * @return the icon
+	 */
+	public ImageDefinition getIcon() {
+		return icon;
+	}
+
+
+	/**
+	 * @param icon the icon to set
+	 */
+	public void setIcon(ImageDefinition icon) {
+		this.icon = icon;
+	}
+	
+	
 }

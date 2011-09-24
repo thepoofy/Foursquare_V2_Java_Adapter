@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -58,21 +57,7 @@ public class MultiResultsParserTest extends BaseTest<Responses>{
 	
 	public MultiResultsParserTest(ResultsParser<Responses> loader)
 	{
-		this.loader = loader;
-	}
-	
-	private ResultsParser<Responses> loader = null;
-	
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	@Override
-	public void setUp() throws Exception {
-		
-		super.setUp();
-		
-		this.setResults(loader.parse(this.getFileContents()));
+		super(loader);
 	}
 	
 	@Test
@@ -91,7 +76,7 @@ public class MultiResultsParserTest extends BaseTest<Responses>{
 			
 			GsonResultsParser<VenueSearchResponse> gLoader = new GsonResultsParser<VenueSearchResponse>(getSubEndpoint());
 			
-			Results<VenueSearchResponse> venues = gLoader.parse(res);
+			Results<VenueSearchResponse> venues = gLoader.fromJson(res);
 			
 			Assert.assertNotNull(venues);
 			Assert.assertNotNull(venues.getResponse());
@@ -103,5 +88,12 @@ public class MultiResultsParserTest extends BaseTest<Responses>{
 	public static DefinedType getSubEndpoint()
 	{
 		return new Results<VenueSearchResponse>(){};
+	}
+
+	@Override
+	public void testEquality(Results<Responses> original,
+			Results<Responses> secondBuild) {
+		// TODO Auto-generated method stub
+		
 	}
 }

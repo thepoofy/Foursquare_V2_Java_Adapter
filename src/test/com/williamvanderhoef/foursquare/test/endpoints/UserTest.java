@@ -66,23 +66,8 @@ public class UserTest extends BaseTest<UserResponse> {
 
 	public UserTest(ResultsParser<UserResponse> loader)
 	{
-		this.loader = loader;
+		super(loader);
 	}
-
-	private ResultsParser<UserResponse> loader = null;
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	@Override
-	public void setUp() throws Exception {
-
-		super.setUp();
-
-		this.setResults(loader.parse(this.getFileContents()));
-	}
-
 
 	@Test
 	public void testUser() {
@@ -117,6 +102,13 @@ public class UserTest extends BaseTest<UserResponse> {
 
 		//TODO add more tests
 
+	}
+
+	@Override
+	public void testEquality(Results<UserResponse> original,
+			Results<UserResponse> secondBuild) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
