@@ -48,6 +48,15 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 		
 		this.adapter = adapter;
 		
+		init();
+	}
+	
+	public JacksonResultsParser() {
+		
+		init();
+	}
+	
+	private void init(){
 		DeserializationConfig cfg = mapper.getDeserializationConfig();
 		cfg.set(Feature.FAIL_ON_UNKNOWN_PROPERTIES, isStrictValidation);
 		mapper.setDeserializationConfig(cfg);
@@ -56,7 +65,6 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 		config.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
 		
 		mapper.registerModule(createNotificationModule());
-
 	}
 	
 	/**
@@ -109,15 +117,7 @@ public class JacksonResultsParser<T> implements ResultsParser<T> {
 		{
 			return mapper.readValue(fileContents, jt);	
 		}
-		catch(JsonMappingException e)
-		{
-			throw new JsonSyntaxException(e);
-		}
-		catch(JsonParseException e)
-		{
-			throw new JsonSyntaxException(e);
-		}
-		catch(IOException e)
+		catch(Exception e)
 		{
 			throw new JsonSyntaxException(e);
 		}

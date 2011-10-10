@@ -2,10 +2,10 @@ package com.williamvanderhoef.foursquare.adapters;
 
 public class JsonSyntaxException extends Exception
 {
-	public JsonSyntaxException(com.google.gson.JsonSyntaxException jse)
-	{
-		super(jse);
-	}
+//	public JsonSyntaxException(com.google.gson.JsonSyntaxException jse)
+//	{
+//		super(jse);
+//	}
 
 	
 	public JsonSyntaxException(Exception e)
