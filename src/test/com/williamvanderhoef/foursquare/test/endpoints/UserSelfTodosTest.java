@@ -18,40 +18,39 @@ import org.junit.runners.Parameterized.Parameters;
 
 import com.williamvanderhoef.foursquare.BaseTest;
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
-import com.williamvanderhoef.foursquare.model.Venue;
+import com.williamvanderhoef.foursquare.model.Todo;
 import com.williamvanderhoef.foursquare.model.subtypes.Items;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
-import com.williamvanderhoef.foursquare.model.subtypes.VenueWrapper;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
-import com.williamvanderhoef.foursquare.responses.UserMayorshipsResponse;
+import com.williamvanderhoef.foursquare.responses.UserTodosResponse;
 
 /**
  * @author Willum
  *
  */
 @RunWith(Parameterized.class)
-public class MayorshipsTest extends BaseTest<UserMayorshipsResponse> {
+public class UserSelfTodosTest extends BaseTest<UserTodosResponse> {
 
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.users.self.mayorships.20110901.json";
+		return "src/test/v2.users.self.todos.SelfTodos.json";
 	}
 	
 	public static DefinedType getEndpoint()
 	{
-		return new Results<UserMayorshipsResponse>(){};
+		return new Results<UserTodosResponse>(){};
 	}
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsParser<UserMayorshipsResponse>> params = new ArrayList<ResultsParser<UserMayorshipsResponse>>();  
+		List<ResultsParser<UserTodosResponse>> params = new ArrayList<ResultsParser<UserTodosResponse>>();  
         
-		GsonResultsParser<UserMayorshipsResponse> gLoader = new GsonResultsParser<UserMayorshipsResponse>(getEndpoint());
+		GsonResultsParser<UserTodosResponse> gLoader = new GsonResultsParser<UserTodosResponse>(getEndpoint());
 		params.add(gLoader);
-		JacksonResultsParser<UserMayorshipsResponse> jLoader = new JacksonResultsParser<UserMayorshipsResponse>(getEndpoint());
+		JacksonResultsParser<UserTodosResponse> jLoader = new JacksonResultsParser<UserTodosResponse>(getEndpoint());
 		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
@@ -61,40 +60,27 @@ public class MayorshipsTest extends BaseTest<UserMayorshipsResponse> {
 		});
 	}
 	
-	public MayorshipsTest(ResultsParser<UserMayorshipsResponse> loader)
+	
+	
+	public UserSelfTodosTest(ResultsParser<UserTodosResponse> loader)
 	{
 		super(loader);
 	}
-			
+	
+	
 	@Test
 	public void testItems() {
 		
-		Results<UserMayorshipsResponse> results = getResults();
-		
-		Items<VenueWrapper> items = results.getResponse().getMayorships();
+		Items<Todo> items = getResults().getResponse().getTodos();
 		
 		Assert.assertNotNull(items);
 	
-		Assert.assertNotNull(items.getCount());
-		
-		Assert.assertNotNull(items.getItems());
-	}
-
-	@Test
-	public void testValues() {
-		
-		Items<VenueWrapper> items = getResults().getResponse().getMayorships();
-		
-		Assert.assertNotNull(items.getItems().get(0));
-		
-		Venue item = items.getItems().get(0).getVenue();
-		
-		Assert.assertNotNull(item);
+		Assert.assertFalse(items.getItems().isEmpty());
 	}
 
 	@Override
-	public void testEquality(Results<UserMayorshipsResponse> original,
-			Results<UserMayorshipsResponse> secondBuild) {
+	public void testEquality(Results<UserTodosResponse> original,
+			Results<UserTodosResponse> secondBuild) {
 		// TODO Auto-generated method stub
 		
 	}

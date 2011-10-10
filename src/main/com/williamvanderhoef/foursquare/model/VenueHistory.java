@@ -13,7 +13,6 @@ package com.williamvanderhoef.foursquare.model;
 public class VenueHistory
 {
 	private Integer beenHere;
-	//private Integer lastHereAt;
 	private Venue venue;
 	
 	
@@ -25,14 +24,7 @@ public class VenueHistory
 	{
 		this.beenHere = beenHere;
 	}
-//	public Integer getLastHereAt()
-//	{
-//		return lastHereAt;
-//	}
-//	public void setLastHereAt(Integer lastHereAt)
-//	{
-//		this.lastHereAt = lastHereAt;
-//	}
+
 	public Venue getVenue()
 	{
 		return venue;

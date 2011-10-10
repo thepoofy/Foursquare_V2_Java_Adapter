@@ -27,13 +27,13 @@ public class TestFileFetcher {
 	private static final String URL_BASE = "https://api.foursquare.com/v2/";
 	
 	//XXX add your own token here.
-	private static final String TOKEN = "QDNMH1ECESKV25JDUF4U5OJKCPHD2S1IE1XXMOBMHSGNJRFB";	
+	private static final String TOKEN = "";	
 
 	//XXX change this to a different endpoint  
-	private static final Foursquare ENDPOINT_DEF = Foursquare.ListDetails;
+//	private static final Foursquare ENDPOINT_DEF = Foursquare.ListDetails;
 	
 	//XXX update the date to get a specific version
-	private static final String REVISION = "20110917";
+	private static final String REVISION = "20111009";
 	
 	/**
 	 * TODO add more endpoint definitions here.
@@ -46,8 +46,19 @@ public class TestFileFetcher {
 		Settings("settings/sendToTwitter/set", true, new KeyValuePair("value", "0")),
 		CheckinsAdd("checkins/add", true, new KeyValuePair("venueId","4cf714d381cd6dcbbbcb7f0d"),new KeyValuePair("broadcast","private")),
 		
-		SelfLists("users/self/lists", false, new KeyValuePair("ll","40.768761299999994,-73.98984444999999")),
-		SelfCreatedLists("users/self/lists", false, new KeyValuePair("ll","40.768761299999994,-73.98984444999999"), new KeyValuePair("group","created")),
+		Self("users/self", false),
+		SelfMayorships("users/self/mayorships", false),
+		SelfBadges("users/self/badges", false),
+		SelfFriends("users/self/friends", false),
+		SelfTips("users/self/tips", false),
+		SelfTodos("users/self/todos", false, new KeyValuePair("ll","40.768761299999994,-73.98984444999999")),
+		SelfVenueHistory("users/self/venuehistory", false),
+		SelfCheckins("users/self/checkins", false, new KeyValuePair("limit","20")),
+		SelfLists("users/self/lists", false),
+		SelfListsCreated("users/self/lists", false, new KeyValuePair("group","created")),
+		
+		VenuesSearch("venues/search", false, new KeyValuePair("ll","40.768761299999994,-73.98984444999999")),
+		
 		ListDetails("lists/4e725193d22dbd6261a1839e", false),
 		
 		MultiVenuesVenues("multi", false, new KeyValuePair("requests",new KeyValuePair("/venues/search?","ll=40.75,-74.0&limit=1"),new KeyValuePair("/venues/search?","ll=40.75,-73.98&limit=1")));
@@ -69,33 +80,46 @@ public class TestFileFetcher {
 	 */
 	public static void main(String[] args) {
 		
+		callFoursquareEndpoint(Foursquare.VenuesSearch);
+		
+//		for(Foursquare endpoint : Foursquare.values())
+//		{
+//			callFoursquareEndpoint(endpoint);
+//		}
+	}
+	
+	private static void callFoursquareEndpoint(Foursquare endpoint)
+	{
 		List<KeyValuePair> params = new ArrayList<KeyValuePair>();
 		params.add(new KeyValuePair("oauth_token", TOKEN));
 		params.add(new KeyValuePair("v",REVISION));
 		
 		
-		for(KeyValuePair param : ENDPOINT_DEF.params)
+		
+		for(KeyValuePair param : endpoint.params)
 		{
 			params.add(param);
 		}
 		
 		String result = null; 
-		if(ENDPOINT_DEF.isPost)
+		if(endpoint.isPost)
 		{
-			result = doPost(URL_BASE+ENDPOINT_DEF.uri, params);
+			result = doPost(URL_BASE+endpoint.uri, params);
 		}
 		else
 		{
-			result = doGet(URL_BASE+ENDPOINT_DEF.uri, params);
+			result = doGet(URL_BASE+endpoint.uri, params);
 		}
 
 		System.out.println(result);
+		
+		
 		
 		if(result != null)
 		{
 			try
 			{
-				File f = new File("src/test/v2."+ENDPOINT_DEF.uri.replaceAll("/", ".")+"."+ENDPOINT_DEF.name()+"."+REVISION+".json");
+				File f = new File("src/test/v2."+endpoint.uri.replaceAll("/", ".")+"."+endpoint.name()+".json");
 				
 				FileWriter writer= new FileWriter(f);
 				

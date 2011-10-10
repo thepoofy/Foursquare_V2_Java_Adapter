@@ -4,28 +4,43 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.williamvanderhoef.foursquare.test.endpoints.CheckinAddTest;
-import com.williamvanderhoef.foursquare.test.endpoints.CheckinsTest;
-import com.williamvanderhoef.foursquare.test.endpoints.ListsGroupTest;
-import com.williamvanderhoef.foursquare.test.endpoints.ListsTest;
-import com.williamvanderhoef.foursquare.test.endpoints.MayorshipsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.CheckinsAddTest;
+import com.williamvanderhoef.foursquare.test.endpoints.ListDetailsTest;
 import com.williamvanderhoef.foursquare.test.endpoints.MultiResultsParserTest;
-import com.williamvanderhoef.foursquare.test.endpoints.UserTest;
-import com.williamvanderhoef.foursquare.test.endpoints.VenueHistoryTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfBadgesTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfCheckinsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfFriendsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfListsGroupTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfListsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfMayorshipsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfTipsTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfTodosTest;
+import com.williamvanderhoef.foursquare.test.endpoints.UserSelfVenueHistoryTest;
+import com.williamvanderhoef.foursquare.test.endpoints.VenuesSearchTest;
 import com.williamvanderhoef.foursquare.test.parsers.GsonResultsParserTest;
 import com.williamvanderhoef.foursquare.test.parsers.JacksonResultsParserTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({CheckinsTest.class,
-	CheckinAddTest.class,
-	CheckinsTest.class,
-	ListsTest.class,
-	ListsGroupTest.class,
-	MayorshipsTest.class,
-	MultiResultsParserTest.class,
-	UserTest.class,
-	VenueHistoryTest.class,
+@SuiteClasses({
+	CheckinsAddTest.class,
 	
+	ListDetailsTest.class,
+	
+	MultiResultsParserTest.class,
+	
+	UserSelfTest.class,
+	UserSelfBadgesTest.class,
+	UserSelfCheckinsTest.class,
+	UserSelfFriendsTest.class,
+	UserSelfListsTest.class,
+	UserSelfListsGroupTest.class,
+	UserSelfMayorshipsTest.class,
+	UserSelfTipsTest.class,
+	UserSelfTodosTest.class,
+	UserSelfVenueHistoryTest.class,
+	
+	VenuesSearchTest.class,
 	
 	GsonResultsParserTest.class,
 	JacksonResultsParserTest.class

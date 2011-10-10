@@ -31,12 +31,12 @@ import com.williamvanderhoef.foursquare.responses.UserListsGroupResponse;
  *
  */
 @RunWith(Parameterized.class)
-public class ListsGroupTest extends BaseTest<UserListsGroupResponse> {
+public class UserSelfListsGroupTest extends BaseTest<UserListsGroupResponse> {
 
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.users.self.lists.SelfCreatedLists.20110917.json";
+		return "src/test/v2.users.self.lists.SelfListsCreated.json";
 	}
 
 	public static DefinedType getEndpoint()
@@ -60,7 +60,7 @@ public class ListsGroupTest extends BaseTest<UserListsGroupResponse> {
 		});
 	}
 
-	public ListsGroupTest(ResultsParser<UserListsGroupResponse> loader)
+	public UserSelfListsGroupTest(ResultsParser<UserListsGroupResponse> loader)
 	{
 		super(loader);
 	}
@@ -77,30 +77,10 @@ public class ListsGroupTest extends BaseTest<UserListsGroupResponse> {
 
 		Assert.assertNotNull(lists.getItems());
 
-		Assert.assertNotNull(lists.getCount());
-		
-		Assert.assertTrue(lists.getCount().equals(Integer.valueOf(2)));
+		Assert.assertEquals(Integer.valueOf(4), lists.getCount());
+	
 	}
-//
-//	@Test
-//	public void testValues() {
-//
-//		List<Group<FoursquareList>> lists = getResults().getResponse().getLists().getGroups();
-//
-//		Group<FoursquareList> list = lists.get(0);
-//
-//		Assert.assertEquals("todos", list.getType());
-//		Assert.assertEquals("My To-Do List", list.getName());
-//		Assert.assertEquals(Integer.valueOf(1), list.getCount());
-//
-//		Assert.assertNotNull(list.getItems());
-//
-//		List<FoursquareList> myTodoList =list.getItems();
-//
-//		Assert.assertEquals(1, myTodoList.size());
-//
-//
-//	}
+
 
 	@Override
 	public void testEquality(Results<UserListsGroupResponse> original,

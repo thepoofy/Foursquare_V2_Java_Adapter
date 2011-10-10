@@ -31,14 +31,13 @@ import com.williamvanderhoef.foursquare.responses.CheckinAddResponse;
  *
  */
 @RunWith(Parameterized.class)
-public class CheckinAddTest extends BaseTest<CheckinAddResponse> {
+public class CheckinsAddTest extends BaseTest<CheckinAddResponse> {
 
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.checkins.add.20110904.json";
+		return "src/test/v2.checkins.add.CheckinsAdd.json";
 	}
-	
 	
 	public static DefinedType getEndpoint()
 	{
@@ -62,7 +61,7 @@ public class CheckinAddTest extends BaseTest<CheckinAddResponse> {
 		});
 	}
 	
-	public CheckinAddTest(ResultsParser<CheckinAddResponse> loader)
+	public CheckinsAddTest(ResultsParser<CheckinAddResponse> loader)
 	{
 		super(loader);
 	}

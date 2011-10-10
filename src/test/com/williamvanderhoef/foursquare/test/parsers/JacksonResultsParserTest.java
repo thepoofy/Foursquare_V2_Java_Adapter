@@ -34,7 +34,7 @@ public class JacksonResultsParserTest extends BaseTest<CheckinAddResponse>{
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.checkins.add.20110904.json";
+		return "src/test/v2.checkins.add.CheckinsAdd.json";
 	}
 	
 	@Test
@@ -56,18 +56,5 @@ public class JacksonResultsParserTest extends BaseTest<CheckinAddResponse>{
 		// TODO Auto-generated method stub
 		
 	}
-	
-//	@Before
-//	@Override
-//	public void setUp() throws Exception
-//	{
-//		super.setUp();
-//		
-//		
-//		
-//		Results<CheckinAddResponse> results = gLoader.fromJson(this.getFileContents());
-//		
-//		this.setResults(results);
-//	}
 	
 }

@@ -1,6 +1,7 @@
 package com.williamvanderhoef.foursquare.model.subtypes;
 
-import java.util.List;
+import com.sun.xml.internal.bind.v2.TODO;
+import com.williamvanderhoef.foursquare.model.ImageDefinition;
 
 /**
  * 
@@ -8,38 +9,19 @@ import java.util.List;
  * @author William Vanderhoef william.vanderhoef@gmail.com
  *
  */
-public class Category
+public class Category extends Unique
 {
-	private String id;
-	
 	private String name;
 	
 	private String pluralName;
 	
 	private String shortName;
 	
-	private String icon;	//url
-	
-	private List<String> parents;
+	private ImageDefinition icon;
 	
 	private Boolean primary;
 	
 	
-	
-	/**
-	 * @return the id
-	 */
-	public String getId()
-	{
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id)
-	{
-		this.id = id;
-	}
 	/**
 	 * @return the name
 	 */
@@ -62,42 +44,26 @@ public class Category
 		this.pluralName = pluralName;
 	}
 	
-	
-	
 	public String getShortName() {
 		return shortName;
 	}
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
 	}
+	
 	/**
 	 * @return the icon
 	 */
-	public String getIcon()
-	{
+	public ImageDefinition getIcon() {
 		return icon;
 	}
 	/**
 	 * @param icon the icon to set
 	 */
-	public void setIcon(String icon)
-	{
+	public void setIcon(ImageDefinition icon) {
 		this.icon = icon;
 	}
-	/**
-	 * @return the parents
-	 */
-	public List<String> getParents()
-	{
-		return parents;
-	}
-	/**
-	 * @param parents the parents to set
-	 */
-	public void setParents(List<String> parents)
-	{
-		this.parents = parents;
-	}
+	
 	/**
 	 * @return the primary
 	 */
@@ -112,6 +78,7 @@ public class Category
 	{
 		this.primary = primary;
 	}
+	
 	
 	
 }

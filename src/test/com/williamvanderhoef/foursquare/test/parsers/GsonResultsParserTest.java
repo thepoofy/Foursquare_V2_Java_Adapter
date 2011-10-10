@@ -35,7 +35,7 @@ public class GsonResultsParserTest extends BaseTest<CheckinAddResponse>{
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.checkins.add.20110904.json";
+		return "src/test/v2.checkins.add.CheckinsAdd.json";
 	}
 	
 	@Test

@@ -31,7 +31,7 @@ public class MultiResultsParserTest extends BaseTest<Responses>{
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.multi.20110914.2.json";
+		return "src/test/v2.multi.MultiVenuesVenues.json";
 	}
 	
 	public static DefinedType getEndpoint()

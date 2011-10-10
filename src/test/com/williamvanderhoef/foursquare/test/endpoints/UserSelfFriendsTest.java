@@ -18,40 +18,39 @@ import org.junit.runners.Parameterized.Parameters;
 
 import com.williamvanderhoef.foursquare.BaseTest;
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
-import com.williamvanderhoef.foursquare.model.VenueHistory;
+import com.williamvanderhoef.foursquare.model.User;
 import com.williamvanderhoef.foursquare.model.subtypes.Items;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
-import com.williamvanderhoef.foursquare.responses.UserVenueHistoryResponse;
+import com.williamvanderhoef.foursquare.responses.UserFriendsResponse;
 
 /**
  * @author Willum
  *
  */
 @RunWith(Parameterized.class)
-public class VenueHistoryTest extends BaseTest<UserVenueHistoryResponse> {
+public class UserSelfFriendsTest extends BaseTest<UserFriendsResponse> {
 
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.users.self.venuehistory.20110828.json";
+		return "src/test/v2.users.self.friends.SelfFriends.json";
 	}
 	
 	public static DefinedType getEndpoint()
 	{
-		return new Results<UserVenueHistoryResponse>(){};
+		return new Results<UserFriendsResponse>(){};
 	}
-	
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsParser<UserVenueHistoryResponse>> params = new ArrayList<ResultsParser<UserVenueHistoryResponse>>();  
+		List<ResultsParser<UserFriendsResponse>> params = new ArrayList<ResultsParser<UserFriendsResponse>>();  
         
-		GsonResultsParser<UserVenueHistoryResponse> gLoader = new GsonResultsParser<UserVenueHistoryResponse>(getEndpoint());
+		GsonResultsParser<UserFriendsResponse> gLoader = new GsonResultsParser<UserFriendsResponse>(getEndpoint());
 		params.add(gLoader);
-		JacksonResultsParser<UserVenueHistoryResponse> jLoader = new JacksonResultsParser<UserVenueHistoryResponse>(getEndpoint());
+		JacksonResultsParser<UserFriendsResponse> jLoader = new JacksonResultsParser<UserFriendsResponse>(getEndpoint());
 		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
@@ -61,40 +60,27 @@ public class VenueHistoryTest extends BaseTest<UserVenueHistoryResponse> {
 		});
 	}
 	
-	public VenueHistoryTest(ResultsParser<UserVenueHistoryResponse> loader)
+	
+	
+	public UserSelfFriendsTest(ResultsParser<UserFriendsResponse> loader)
 	{
 		super(loader);
 	}
 	
-		
+	
 	@Test
 	public void testItems() {
 		
-		Results<UserVenueHistoryResponse> results = getResults();
-		
-		Items<VenueHistory> items = results.getResponse().getVenues();
+		Items<User> items = getResults().getResponse().getFriends();
 		
 		Assert.assertNotNull(items);
 	
-		Assert.assertNotNull(items.getCount());
-		
-		Assert.assertNotNull(items.getItems());
-	}
-
-	@Test
-	public void testValues() {
-//		fail("Not yet implemented");
-		
-		Items<VenueHistory> checkins = getResults().getResponse().getVenues();
-		
-		VenueHistory ck = checkins.getItems().get(0);
-		
-		Assert.assertNotNull(ck);
+		Assert.assertFalse(items.getItems().isEmpty());
 	}
 
 	@Override
-	public void testEquality(Results<UserVenueHistoryResponse> original,
-			Results<UserVenueHistoryResponse> secondBuild) {
+	public void testEquality(Results<UserFriendsResponse> original,
+			Results<UserFriendsResponse> secondBuild) {
 		// TODO Auto-generated method stub
 		
 	}

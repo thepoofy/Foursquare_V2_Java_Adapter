@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import junit.framework.Assert;
 
@@ -18,39 +19,38 @@ import org.junit.runners.Parameterized.Parameters;
 
 import com.williamvanderhoef.foursquare.BaseTest;
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
-import com.williamvanderhoef.foursquare.model.Checkin;
-import com.williamvanderhoef.foursquare.model.subtypes.Items;
+import com.williamvanderhoef.foursquare.model.Badge;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
-import com.williamvanderhoef.foursquare.responses.UserCheckinsResponse;
+import com.williamvanderhoef.foursquare.responses.UserBadgesResponse;
 
 /**
  * @author Willum
  *
  */
 @RunWith(Parameterized.class)
-public class CheckinsTest extends BaseTest<UserCheckinsResponse> {
+public class UserSelfBadgesTest extends BaseTest<UserBadgesResponse> {
 
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.users.self.checkins.20110828.json";
+		return "src/test/v2.users.self.badges.SelfBadges.json";
 	}
 	
 	public static DefinedType getEndpoint()
 	{
-		return new Results<UserCheckinsResponse>(){};
+		return new Results<UserBadgesResponse>(){};
 	}
 	
 	@Parameters
 	public static Collection<Object[]> generateParams(){
-		List<ResultsParser<UserCheckinsResponse>> params = new ArrayList<ResultsParser<UserCheckinsResponse>>();  
+		List<ResultsParser<UserBadgesResponse>> params = new ArrayList<ResultsParser<UserBadgesResponse>>();  
         
-		GsonResultsParser<UserCheckinsResponse> gLoader = new GsonResultsParser<UserCheckinsResponse>(getEndpoint());
+		GsonResultsParser<UserBadgesResponse> gLoader = new GsonResultsParser<UserBadgesResponse>(getEndpoint());
 		params.add(gLoader);
-		JacksonResultsParser<UserCheckinsResponse> jLoader = new JacksonResultsParser<UserCheckinsResponse>(getEndpoint());
+		JacksonResultsParser<UserBadgesResponse> jLoader = new JacksonResultsParser<UserBadgesResponse>(getEndpoint());
 		jLoader.setStrictValidation(true);
 		params.add(jLoader);
         
@@ -62,7 +62,7 @@ public class CheckinsTest extends BaseTest<UserCheckinsResponse> {
 	
 	
 	
-	public CheckinsTest(ResultsParser<UserCheckinsResponse> loader)
+	public UserSelfBadgesTest(ResultsParser<UserBadgesResponse> loader)
 	{
 		super(loader);
 	}
@@ -71,31 +71,28 @@ public class CheckinsTest extends BaseTest<UserCheckinsResponse> {
 	@Test
 	public void testItems() {
 		
-		Results<UserCheckinsResponse> results = getResults();
+		Map<String, Badge> badges = getResults().getResponse().getBadges();
 		
-		Items<Checkin> checkins = results.getResponse().getCheckins();
-		
-		Assert.assertNotNull(checkins);
+		Assert.assertNotNull(badges);
 	
-		Assert.assertNotNull(checkins.getCount());
+		Assert.assertFalse(badges.isEmpty());
 		
-		Assert.assertNotNull(checkins.getItems());
+		Assert.assertTrue(badges.values().size() > 0);
 	}
 
 	@Test
-	public void testCheckins() {
-//		fail("Not yet implemented");
+	public void testCheckins() 
+	{
+		Map<String, Badge> badges = getResults().getResponse().getBadges();
 		
-		Items<Checkin> checkins = getResults().getResponse().getCheckins();
+		Collection<Badge> badgeList = badges.values();
 		
-		Checkin ck = checkins.getItems().get(0);
-		
-		Assert.assertNotNull(ck);
+		Assert.assertNotNull(badgeList);
 	}
 
 	@Override
-	public void testEquality(Results<UserCheckinsResponse> original,
-			Results<UserCheckinsResponse> secondBuild) {
+	public void testEquality(Results<UserBadgesResponse> original,
+			Results<UserBadgesResponse> secondBuild) {
 		// TODO Auto-generated method stub
 		
 	}

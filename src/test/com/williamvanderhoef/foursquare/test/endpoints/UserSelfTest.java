@@ -33,12 +33,12 @@ import com.williamvanderhoef.foursquare.responses.UserResponse;
  *
  */
 @RunWith(Parameterized.class)
-public class UserTest extends BaseTest<UserResponse> {
+public class UserSelfTest extends BaseTest<UserResponse> {
 
 	@Override
 	public String getFileName()
 	{
-		return "src/test/v2.users.self.20110901.json";
+		return "src/test/v2.users.self.Self.json";
 	}
 
 	public static DefinedType getEndpoint()
@@ -63,7 +63,7 @@ public class UserTest extends BaseTest<UserResponse> {
 		});
 	}
 
-	public UserTest(ResultsParser<UserResponse> loader)
+	public UserSelfTest(ResultsParser<UserResponse> loader)
 	{
 		super(loader);
 	}
@@ -77,24 +77,24 @@ public class UserTest extends BaseTest<UserResponse> {
 
 		Assert.assertNotNull(user);
 
-		Assert.assertEquals("Poofy",user.getFirstName());
+		Assert.assertEquals("Will",user.getFirstName());
 
-		Assert.assertEquals("McPooferson",user.getLastName());
+		Assert.assertEquals("Vanderhoef",user.getLastName());
 
-		Assert.assertEquals(User.Gender.none, user.getGender());
+		Assert.assertEquals(User.Gender.male, user.getGender());
 
 		Assert.assertEquals(User.Relationship.self,user.getRelationship());
 
 
 		Contact contact = user.getContact();
 		Assert.assertNotNull(contact);
-		Assert.assertEquals("checkinasst",contact.getTwitter());
-		Assert.assertEquals("2013522249", contact.getPhone());
+		Assert.assertEquals("thepoofy",contact.getTwitter());
+		Assert.assertEquals("6313352247", contact.getPhone());
 
 
 		Count badgeCount = user.getBadges();
 		Assert.assertNotNull(badgeCount);
-		Assert.assertEquals(Integer.valueOf(17), badgeCount.getCount());
+		Assert.assertEquals(Integer.valueOf(84), badgeCount.getCount());
 
 		//TODO expect this to become null in the near future, should become a Count object
 		Assert.assertNotNull(user.getMayorships().getItems());
