@@ -7,8 +7,10 @@ import com.williamvanderhoef.foursquare.model.subtypes.Unique;
 /**
  * @date("08/28/2011")
  * 
+ * TODO split this into compact/original/details for lists, groups and details
+ * 
  * The name was originally "List" but it took all of 3 minutes to realize how ambiguous that would be in downstream code.
- * The name FoursquareList was chosen in the event
+ * The name FoursquareList was chosen as a result, breaking protocol with the rest of the names.
  * 
  * @author Willum
  *
