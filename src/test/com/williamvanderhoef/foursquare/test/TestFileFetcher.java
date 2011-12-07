@@ -58,6 +58,7 @@ public class TestFileFetcher {
 		SelfListsCreated("users/self/lists", false, new KeyValuePair("group","created")),
 		
 		VenuesSearch("venues/search", false, new KeyValuePair("ll","40.768761299999994,-73.98984444999999")),
+		VenuesLinks("venues/4af82bc2f964a520370b22e3/links",false),
 		
 		ListDetails("lists/4e725193d22dbd6261a1839e", false),
 		
@@ -66,6 +67,7 @@ public class TestFileFetcher {
 		public final String uri;
 		public List<KeyValuePair>params;
 		public final boolean isPost;
+		
 		private Foursquare(String uri, boolean isPost, KeyValuePair... params)
 		{
 			this.uri = uri;
@@ -80,7 +82,7 @@ public class TestFileFetcher {
 	 */
 	public static void main(String[] args) {
 		
-		callFoursquareEndpoint(Foursquare.VenuesSearch);
+		callFoursquareEndpoint(Foursquare.VenuesLinks);
 		
 //		for(Foursquare endpoint : Foursquare.values())
 //		{
