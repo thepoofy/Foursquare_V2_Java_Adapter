@@ -3,6 +3,7 @@ package com.williamvanderhoef.foursquare;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.util.List;
 
 import junit.framework.Assert;
@@ -143,5 +144,17 @@ public abstract class BaseTest<T>{
 
 		Assert.assertNotNull( notification.getItem());
 		Assert.assertEquals(NotificationTray.class, notification.getItem().getClass());
+	}
+	
+	public String serialize(Type t) throws JsonSyntaxException
+	{
+		return loader.toJson(results.getResponse());
+	}
+	
+	public T reserialize(Type t) throws JsonSyntaxException
+	{
+		String res = loader.toJson(results.getResponse());
+		
+		return loader.simpleFromJson(res, t);
 	}
 }

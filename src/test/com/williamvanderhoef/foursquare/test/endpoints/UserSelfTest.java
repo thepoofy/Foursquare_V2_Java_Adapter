@@ -18,6 +18,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 import com.williamvanderhoef.foursquare.BaseTest;
 import com.williamvanderhoef.foursquare.adapters.DefinedType;
+import com.williamvanderhoef.foursquare.adapters.JsonSyntaxException;
 import com.williamvanderhoef.foursquare.model.Contact;
 import com.williamvanderhoef.foursquare.model.User;
 import com.williamvanderhoef.foursquare.model.UserDetails;
@@ -25,6 +26,7 @@ import com.williamvanderhoef.foursquare.model.subtypes.Count;
 import com.williamvanderhoef.foursquare.model.subtypes.Results;
 import com.williamvanderhoef.foursquare.parsers.GsonResultsParser;
 import com.williamvanderhoef.foursquare.parsers.JacksonResultsParser;
+import com.williamvanderhoef.foursquare.parsers.JsonUtil;
 import com.williamvanderhoef.foursquare.parsers.ResultsParser;
 import com.williamvanderhoef.foursquare.responses.UserResponse;
 
@@ -110,4 +112,26 @@ public class UserSelfTest extends BaseTest<UserResponse> {
 		
 	}
 
+	@Test
+	public void testReserialize() throws JsonSyntaxException
+	{
+		UserResponse res = reserialize(UserResponse.class);
+		
+		Assert.assertNotNull(res);
+		Assert.assertNotNull(res.getUser());
+		
+		
+		
+	}
+	
+	@Test
+	public void testSerialize() throws JsonSyntaxException
+	{
+		String s = serialize(UserResponse.class);
+		
+		UserResponse userResponse = JsonUtil.getParser(UserResponse.class).simpleFromJson(s, UserResponse.class);
+		Assert.assertNotNull(userResponse);
+		Assert.assertNotNull(userResponse.getUser());
+	}
+	
 }
