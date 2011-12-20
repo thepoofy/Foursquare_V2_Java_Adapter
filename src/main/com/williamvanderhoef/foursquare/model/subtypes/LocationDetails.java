@@ -9,6 +9,8 @@ public class LocationDetails extends Location
 	private String postalCode;
 	private String country;
 	private Double distance;
+	private Double lat;
+	private Double lng;
 	
 	
 	/**
@@ -108,6 +110,30 @@ public class LocationDetails extends Location
 	public void setDistance(Double distance)
 	{
 		this.distance = distance;
+	}
+	/**
+	 * @return the lat
+	 */
+	public Double getLat() {
+		return lat;
+	}
+	/**
+	 * @param lat the lat to set
+	 */
+	public void setLat(Double lat) {
+		this.lat = lat;
+	}
+	/**
+	 * @return the lng
+	 */
+	public Double getLng() {
+		return lng;
+	}
+	/**
+	 * @param lng the lng to set
+	 */
+	public void setLng(Double lng) {
+		this.lng = lng;
 	}
 	
 }
